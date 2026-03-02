@@ -104,24 +104,22 @@
       padding:66px 0 30px;
       position: relative;
       overflow: hidden;
-    }
-    .hero::before{
+    }.hero::before{
   content:"";
   position:absolute;
   inset:0;
   background: url("images/hero-fiber.jpg") center/cover no-repeat;
-  opacity: .55;                 /* יותר ברור ברקע */
-  filter: saturate(1.1) contrast(1.12) brightness(1.05);
+  opacity: .85;                         /* הרבה יותר בהיר */
+  filter: saturate(1.1) contrast(1.08) brightness(1.22);
   transform: scale(1.03);
 }
 
+/* שכבה עדינה בלבד כדי שהטקסט יהיה קריא */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(900px 420px at 70% 30%, rgba(0,0,0,.25), transparent 60%),
-    linear-gradient(180deg, rgba(5,8,22,.35), rgba(5,8,22,.55));
+  background: linear-gradient(180deg, rgba(5,8,22,.12), rgba(5,8,22,.35));
 }
     .hero > .container{position:relative}
 
@@ -129,14 +127,23 @@
       display:grid;
       grid-template-columns: 1.15fr .85fr;
       gap:18px;
-      align-items:stretch;
-      .hero-grid > div{
-  background: rgba(5,8,22,.52);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 22px;
-  padding: 22px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      align-items:stretch;/* Make hero text readable without darkening the whole image */
+.hero-grid > div{
+  background: rgba(5,8,22,.38) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  border-radius: 22px !important;
+  padding: 24px !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.28) !important;
+}
+
+h1{
+  color: #ffffff !important;
+  text-shadow: 0 10px 28px rgba(0,0,0,.35) !important;
+}
+.sub{
+  color: rgba(255,255,255,.92) !important;
+}
 }
     }
     .badge{
