@@ -99,51 +99,55 @@
     .btn-primary:hover{filter:brightness(1.03)}
     .icon{width:18px;height:18px;display:inline-block}
 
-    /* Hero */
-    .hero{
-      padding:66px 0 30px;
-      position: relative;
-      overflow: hidden;
-    }.hero::before{
+  
+  /* Hero */
+.hero{
+  padding:66px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before{
   content:"";
   position:absolute;
   inset:0;
   background: url("images/hero-fiber.jpg") center/cover no-repeat;
-  opacity: .85;                         /* הרבה יותר בהיר */
-  filter: saturate(1.1) contrast(1.08) brightness(1.22);
+  opacity: .90; /* בהיר יותר */
+  filter: saturate(1.1) contrast(1.05) brightness(1.28);
   transform: scale(1.03);
 }
-
-/* שכבה עדינה בלבד כדי שהטקסט יהיה קריא */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(180deg, rgba(5,8,22,.12), rgba(5,8,22,.35));
+  /* שכבה ממש עדינה כדי לשמור קריאות */
+  background: linear-gradient(180deg, rgba(5,8,22,.08), rgba(5,8,22,.22));
 }
-    .hero > .container{position:relative}
+.hero > .container{position:relative}
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      align-items:stretch;/* Make hero text readable without darkening the whole image */
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1fr; /* רק צד אחד */
+  gap:18px;
+  align-items:stretch;
+}
+
+/* כרטיס שקוף מאחורי הטקסט בשביל קריאות */
 .hero-grid > div{
-  background: rgba(5,8,22,.38) !important;
-  border: 1px solid rgba(255,255,255,.14) !important;
-  border-radius: 22px !important;
-  padding: 24px !important;
-  backdrop-filter: blur(8px) !important;
-  box-shadow: 0 18px 60px rgba(0,0,0,.28) !important;
+  background: rgba(5,8,22,.32);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 22px;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
 }
 
-h1{
-  color: #ffffff !important;
-  text-shadow: 0 10px 28px rgba(0,0,0,.35) !important;
+/* טקסט חד */
+.hero h1{
+  color:#fff;
+  text-shadow: 0 10px 28px rgba(0,0,0,.28);
 }
-.sub{
-  color: rgba(255,255,255,.92) !important;
-}
+.hero .sub{
+  color: rgba(255,255,255,.92);
 }
     }
     .badge{
@@ -439,11 +443,11 @@ h1{
             <span><b>סיבים אופטיים</b> • תשתיות • תקשורת • מצלמות • ניהול פרויקטים</span>
           </div>
 
-          <h1>תשתיות חכמות לתקשורת מודרנית — בכל הארץ.</h1>
+          <h1>תשתיות חכמות לתקשורת מודרנית בכל הארץ.</h1>
 
           <p class="sub">
             <b>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
-            כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת — עם סדר, תיעוד ועמידה בלו״ז.
+            כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת עם סדר, תיעוד ועמידה בלו״ז.
           </p>
 
           <div class="hero-actions">
@@ -459,14 +463,6 @@ h1{
         </div>
 
 
-            <div class="stats">
-              <div class="stat"><div class="n">E2E</div><div class="t">תכנון → ביצוע → מסירה</div></div>
-              <div class="stat"><div class="n">QA</div><div class="t">בדיקות ותיקונים</div></div>
-              <div class="stat"><div class="n">PM</div><div class="t">ניהול ותיאום</div></div>
-              <div class="stat"><div class="n">Docs</div><div class="t">תיעוד מסודר</div></div>
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
 
