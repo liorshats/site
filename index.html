@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SHATS A.E.A | תשתיות סיבים • תקשורת • ניהול פרויקטים</title>
+  <title>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ | סיבים אופטיים • תקשורת • פרויקטים</title>
 
-  <meta name="description" content="שץ איי.אי.איי תשתיות ופרויקטים בע"מ מחברת את העתיד להווה. אנו מתמחים בתכנון והקמת תשתיות סיבים אופטיים מתקדמות, ומספקים פתרונות מקצה לקצה לפרויקטים בתחום התקשורת – בדיוק, באחריות ובסטנדרט הגבוה ביותר." />
+  <meta name="description" content="שץ איי.אי.איי תשתיות ופרוייקטים בע״מ – תכנון פרויקטים, השחלות, ריתוכים, הקמת אתרי תקשורת ואחזקה לתשתיות סיבים ותקשורת. עבודה מדויקת בכל הארץ." />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="SHATSAEA | תשתיות סיבים ותקשורת" />
-  <meta property="og:description" content="תכנון, הקמה וניהול פרויקטים לתשתיות סיבים אופטיים, תקשורת ומצלמות." />
+  <meta property="og:title" content="שץ איי.אי.איי תשתיות ופרוייקטים בע״מ" />
+  <meta property="og:description" content="סיבים אופטיים • תקשורת • ניהול פרויקטים • השחלות • ריתוכים • הקמת אתרי תקשורת • אחזקה" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.shatsaea.co.il/" />
 
@@ -41,7 +40,9 @@
       color:var(--txt);
     }
     a{color:inherit}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    /* Nav */
     .nav{
       position:sticky; top:0; z-index:50;
       background: linear-gradient(180deg, rgba(5,8,22,.86), rgba(5,8,22,.62));
@@ -54,33 +55,39 @@
     }
     .brand{
       display:flex; gap:10px; align-items:center; text-decoration:none;
-      font-weight:800; letter-spacing:.3px;
+      font-weight:900; letter-spacing:.2px;
+      min-width: 220px;
     }
     .logo{
-      width:36px;height:36px;border-radius:12px;
+      width:40px;height:40px;border-radius:14px;
       background: radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.35), transparent 55%),
                   linear-gradient(135deg, var(--blue), var(--blue2));
       box-shadow: 0 10px 30px rgba(10,91,255,.35);
       border:1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+      display:grid; place-items:center;
     }
-    .brand span{opacity:.95}
-    .links{display:flex; gap:14px; align-items:center}
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .brand .name{display:flex; flex-direction:column; gap:2px}
+    .brand .name b{font-size:14px}
+    .brand .name span{font-size:12px;color:var(--muted);font-weight:800}
+
+    .links{display:flex; gap:10px; align-items:center}
     .links a{
       text-decoration:none; color:var(--muted);
-      font-weight:600; font-size:14px;
+      font-weight:700; font-size:13px;
       padding:10px 10px; border-radius:12px;
     }
     .links a:hover{color:var(--txt); background: rgba(255,255,255,.06)}
-    .cta{
-      display:flex; gap:10px; align-items:center;
-    }
+    .cta{display:flex; gap:10px; align-items:center}
+
     .btn{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 14px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
       text-decoration:none;
-      font-weight:700;
+      font-weight:800;
       font-size:14px;
       background: rgba(255,255,255,.06);
     }
@@ -92,13 +99,13 @@
     }
     .btn-primary:hover{filter:brightness(1.03)}
     .icon{width:18px;height:18px;display:inline-block}
-    .hero{
-      padding:68px 0 34px;
-    }
+
+    /* Hero */
+    .hero{padding:62px 0 30px}
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:26px;
+      grid-template-columns: 1.1fr .9fr;
+      gap:20px;
       align-items:stretch;
     }
     .badge{
@@ -108,24 +115,24 @@
       background: rgba(255,255,255,.05);
       border-radius:999px;
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
     }
-    .badge b{color:var(--txt)}
     h1{
       margin:14px 0 10px;
-      font-size:44px;
-      line-height:1.08;
+      font-size:40px;
+      line-height:1.12;
       letter-spacing:-.2px;
     }
     .sub{
       color:var(--muted);
       font-size:16px;
-      line-height:1.8;
-      margin:0 0 18px;
-      max-width: 62ch;
+      line-height:1.85;
+      margin:0 0 16px;
+      max-width: 65ch;
     }
     .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+
     .panel{
       border:1px solid rgba(26,42,87,.75);
       background: linear-gradient(180deg, rgba(11,17,48,.72), rgba(11,17,48,.45));
@@ -142,45 +149,43 @@
         radial-gradient(380px 220px at 90% 30%, rgba(10,91,255,.18), transparent 55%);
       pointer-events:none;
     }
-    .panel-inner{position:relative;padding:18px}
+    .panel-inner{position:relative;padding:16px}
+    .hero-media{
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      height: 220px;
+    }
+    .hero-media img{width:100%;height:100%;object-fit:cover; display:block; filter:saturate(1.1) contrast(1.05)}
     .stats{
       display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;
       margin-top:12px;
     }
     .stat{
-      padding:14px;
+      padding:12px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
     }
-    .stat .n{font-size:22px;font-weight:900}
-    .stat .t{color:var(--muted);font-weight:700;font-size:12px;margin-top:4px}
+    .stat .n{font-size:18px;font-weight:900}
+    .stat .t{color:var(--muted);font-weight:800;font-size:12px;margin-top:4px}
     .wire{
-      margin-top:14px;
+      margin-top:12px;
       border-top:1px dashed rgba(169,183,230,.25);
       padding-top:12px;
       color:var(--muted);
       font-size:13px;
-      line-height:1.8;
+      line-height:1.9;
     }
-    .section{
-      padding:34px 0;
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size:26px;
-      letter-spacing:-.2px;
-    }
-    .section p.lead{
-      margin:0 0 18px;
-      color:var(--muted);
-      line-height:1.8;
-      max-width: 80ch;
-    }
-    .grid3{
-      display:grid; gap:14px;
-      grid-template-columns: repeat(3, 1fr);
-    }
+
+    /* Sections */
+    .section{padding:34px 0}
+    .section h2{margin:0 0 10px; font-size:26px; letter-spacing:-.2px}
+    .section p.lead{margin:0 0 18px; color:var(--muted); line-height:1.85; max-width: 90ch}
+
+    .grid3{display:grid; gap:14px; grid-template-columns: repeat(3, 1fr)}
+    .grid4{display:grid; gap:14px; grid-template-columns: repeat(4, 1fr)}
     .card{
       padding:16px;
       border-radius:18px;
@@ -197,20 +202,19 @@
       pointer-events:none;
     }
     .card > *{position:relative}
-    .card .top{
-      display:flex; gap:12px; align-items:center; margin-bottom:10px;
-    }
+    .top{display:flex; gap:12px; align-items:center; margin-bottom:10px}
     .pill{
       width:38px;height:38px;border-radius:14px;
       display:grid; place-items:center;
       background: rgba(10,91,255,.16);
       border:1px solid rgba(53,182,255,.25);
+      font-weight:900;
     }
     .card h3{margin:0;font-size:16px}
     .card p{margin:8px 0 0; color:var(--muted); line-height:1.75; font-size:14px}
-    .split{
-      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
-    }
+
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+
     .list{
       margin:10px 0 0; padding:0; list-style:none;
       display:grid; gap:10px;
@@ -229,26 +233,68 @@
       display:grid; place-items:center;
       flex:0 0 auto;
       margin-top:1px;
+      color:#fff;
+      font-weight:900;
+      font-size:13px;
+      line-height:1;
     }
-    .projects{
-      display:grid; gap:14px;
-      grid-template-columns: 1.2fr .8fr;
-      align-items:start;
+
+    /* Clients */
+    .clients{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:12px;
+      align-items:center;
     }
-    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    .tag{
-      font-size:12px; font-weight:800;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
+    .client{
+      border-radius:16px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      display:grid; place-items:center;
+      min-height:74px;
+    }
+    .client img{
+      max-width: 120px;
+      max-height: 42px;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      filter: grayscale(1) brightness(1.2);
+      opacity:.9;
+    }
+    .client:hover img{filter:none; opacity:1}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .gitem{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
-      color:var(--muted);
+      height: 220px;
+      position:relative;
     }
-    .contact{
-      display:grid; gap:14px;
-      grid-template-columns: 1fr 1fr;
+    .gitem img{width:100%; height:100%; object-fit:cover; display:block; transition: transform .25s ease}
+    .gitem:hover img{transform: scale(1.03)}
+    .gcap{
+      position:absolute; inset:auto 10px 10px 10px;
+      padding:8px 10px;
+      border-radius:14px;
+      background: rgba(5,8,22,.72);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(234,240,255,.92);
+      font-size:12px;
+      font-weight:800;
+      backdrop-filter: blur(10px);
     }
-    .contact a{word-break:break-word}
+
+    /* Contact */
+    .contact{display:grid; gap:14px; grid-template-columns: 1fr 1fr}
     .field{
       display:grid; gap:8px;
       padding:14px;
@@ -256,27 +302,33 @@
       border:1px solid rgba(26,42,87,.75);
       background: rgba(255,255,255,.04);
     }
-    .field small{color:var(--muted); font-weight:800}
+    .field small{color:var(--muted); font-weight:900}
     .field strong{font-size:15px}
+    .field a{word-break:break-word}
+
     footer{
       padding:28px 0 36px;
       border-top:1px solid rgba(26,42,87,.6);
       color:var(--muted);
       font-size:13px;
     }
-    .foot{
-      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    }
+    .foot{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap}
 
     /* Responsive */
     @media (max-width: 980px){
       .hero-grid{grid-template-columns:1fr}
-      .projects{grid-template-columns:1fr}
       .split{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
-      .contact{grid-template-columns:1fr}
-      h1{font-size:36px}
+      .grid4{grid-template-columns:1fr 1fr}
+      .clients{grid-template-columns: repeat(3, 1fr)}
+      .gallery{grid-template-columns: 1fr}
+      h1{font-size:34px}
       .links{display:none}
+      .brand{min-width:auto}
+    }
+    @media (max-width: 520px){
+      .clients{grid-template-columns: repeat(2, 1fr)}
+      .grid4{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -285,26 +337,30 @@
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="חזרה לראש העמוד">
-        <div class="logo" aria-hidden="true"></div>
-        <span>SHATSAEA</span>
+        <div class="logo" aria-hidden="true">
+          <!-- אם העלית לוגו: images/logo.png -->
+          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי" onerror="this.style.display='none'">
+        </div>
+        <div class="name">
+          <b>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ</b>
+          <span>סיבים אופטיים • תקשורת • ניהול פרויקטים • מצלמות</span>
+        </div>
       </a>
 
       <div class="links" aria-label="ניווט">
         <a href="#services">שירותים</a>
-        <a href="#capabilities">יכולות</a>
-        <a href="#process">תהליך</a>
-        <a href="#projects">פרויקטים</a>
+        <a href="#why">למה אנחנו</a>
+        <a href="#clients">לקוחות</a>
+        <a href="#gallery">גלריה</a>
         <a href="#contact">יצירת קשר</a>
       </div>
 
       <div class="cta">
-        <!-- TODO: עדכן מספר טלפון -->
         <a class="btn" href="tel:+972545467122" title="התקשרו">
           <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.9.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.4 22 2 13.6 2 3c0-.6.4-1 1-1h4.1c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.9.1.4 0 .8-.3 1.1L6.6 10.8z" stroke="currentColor" stroke-width="1.6"/></svg>
           טלפון
         </a>
 
-        <!-- TODO: עדכן מספר וואטסאפ בפורמט בינלאומי בלי + (9725xxxxxxx) -->
         <a class="btn btn-primary" href="https://wa.me/972545467122" target="_blank" rel="noopener">
           <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M20.2 11.6c0 4.6-3.8 8.4-8.4 8.4-1.5 0-2.9-.4-4.1-1l-3.9 1 1.1-3.7c-.8-1.3-1.2-2.8-1.2-4.6C3.7 7 7.5 3.2 12 3.2c4.6 0 8.2 3.8 8.2 8.4z" stroke="currentColor" stroke-width="1.6"/><path d="M9.7 8.8c.2-.4.4-.4.7-.4h.6c.2 0 .4.1.5.4l.8 1.9c.1.2.1.5-.1.7l-.6.7c-.1.1-.2.3-.1.4.4.7 1.4 1.8 2.8 2.4.2.1.4.1.5-.1l.8-.9c.2-.2.4-.2.7-.1l1.8.9c.3.1.4.4.4.6 0 .9-.4 1.7-1.1 2.1-.7.4-1.6.4-2.6 0-3.2-1.2-5.7-4.4-6.3-6-.4-1 0-2 .3-2.6z" fill="currentColor" opacity=".85"/></svg>
           וואטסאפ
@@ -319,20 +375,19 @@
         <div>
           <div class="badge">
             <span>⚡</span>
-            <span><b>תשתיות סיבים</b> • תקשורת • מצלמות • ניהול פרויקטים</span>
+            <span><b>סיבים אופטיים</b> • תשתיות • תקשורת • מצלמות • ניהול פרויקטים</span>
           </div>
 
-          <!-- TODO: עדכן שם החברה אמיתי אם שונה -->
-          <h1>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</h1>
+          <h1>תשתיות חכמות לתקשורת מודרנית — בכל הארץ.</h1>
 
           <p class="sub">
-            אנחנו מתמחים בתכנון, הקמה וניהול פרויקטים של <b>סיבים אופטיים</b> ותשתיות תקשורת מקצה לקצה —
-            כולל מצלמות, ארונות תקשורת, נקודות קצה ותיעוד מסודר. ביצוע נקי, עמידה בלוחות זמנים, ושקיפות מלאה לאורך הדרך.
+            <b>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
+            כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת — עם סדר, תיעוד ועמידה בלו״ז.
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">
-              <span>דברו איתנו</span>
+              <span>לקבלת הצעת מחיר</span>
               <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 7h10v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 17 17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             </a>
             <a class="btn" href="#services">
@@ -342,39 +397,26 @@
           </div>
         </div>
 
-        <aside class="panel" aria-label="סיכום יכולות">
+        <aside class="panel" aria-label="תמונה ונתונים">
           <div class="panel-inner">
-            <div style="font-weight:900;font-size:14px;color:var(--muted);">מה תקבלו בפועל</div>
+            <div class="hero-media" aria-label="תמונת סיבים">
+              <!-- העלה תמונה בשם images/hero-fiber.jpg -->
+              <img src="images/hero-fiber.jpg" alt="סיבים אופטיים - תשתיות תקשורת" onerror="this.style.display='none'">
+            </div>
+
             <div class="stats">
-              <div class="stat">
-                <div class="n">E2E</div>
-                <div class="t">מ־תכנון עד מסירה</div>
-              </div>
-              <div class="stat">
-                <div class="n">SLA</div>
-                <div class="t">לו״ז ותיאום גורמים</div>
-              </div>
-              <div class="stat">
-                <div class="n">QA</div>
-                <div class="t">בדיקות ותיקונים</div>
-              </div>
-              <div class="stat">
-                <div class="n">Docs</div>
-                <div class="t">תיעוד ומסירה מסודרת</div>
-              </div>
+              <div class="stat"><div class="n">E2E</div><div class="t">תכנון → ביצוע → מסירה</div></div>
+              <div class="stat"><div class="n">QA</div><div class="t">בדיקות ותיקונים</div></div>
+              <div class="stat"><div class="n">PM</div><div class="t">ניהול ותיאום גורמים</div></div>
+              <div class="stat"><div class="n">Docs</div><div class="t">תיעוד ומסירה</div></div>
             </div>
 
             <div class="wire">
-              <b style="color:var(--txt)">תחומי התמחות:</b>
-              סיבים אופטיים • תקשורת • מצלמות • תשתיות קצה • ניהול פרויקטים • תיאום קבלנים וספקים
-            </div>
-
-            <div class="tagrow" aria-label="תגיות">
-              <span class="tag">Fiber</span>
-              <span class="tag">Networks</span>
-              <span class="tag">CCTV</span>
-              <span class="tag">Project Mgmt</span>
-              <span class="tag">Documentation</span>
+              <b style="color:var(--txt)">אזור פעילות:</b> כל הארץ<br>
+              <b style="color:var(--txt)">יצירת קשר:</b>
+              <a href="tel:+972545467122">054-546-7122</a> •
+              <a target="_blank" rel="noopener" href="https://wa.me/972545467122">וואטסאפ</a> •
+              <a href="mailto:ilan.s@shats.co.il">ilan.s@shats.co.il</a>
             </div>
           </div>
         </aside>
@@ -383,192 +425,163 @@
 
     <section id="services" class="section">
       <div class="container">
-        <h2>השירותים שלנו</h2>
-        <p class="lead">סט שירותים מלא לתשתיות תקשורת מודרניות — עם דגש על ביצוע נקי, איכות ותיעוד.</p>
+        <h2>שירותים</h2>
+        <p class="lead">מעטפת מלאה לפרויקטי סיבים/תקשורת — משלב התכנון ועד האחזקה.</p>
 
         <div class="grid3">
           <div class="card">
             <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 9l-3 3 3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <h3>תשתיות סיבים אופטיים</h3>
+              <div class="pill" aria-hidden="true">🧭</div>
+              <h3>תכנון פרויקטים</h3>
             </div>
-            <p>תכנון והקמה, חיבורים, ארונות/נקודות קצה, בדיקות, תיעוד ותהליך מסירה מסודר.</p>
+            <p>אפיון, תכנון מסלולים ונקודות, הכנת תוכנית עבודה ותיאום גורמים.</p>
           </div>
 
           <div class="card">
             <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 18V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10 18V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 18V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18 18V12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              </div>
-              <h3>תקשורת ורשתות</h3>
+              <div class="pill" aria-hidden="true">🧵</div>
+              <h3>השחלות</h3>
             </div>
-            <p>תשתיות תקשורת, ארונות, סידור/תיוג, נקודות קצה וסטנדרט מסירה שמאפשר תחזוקה קלה.</p>
+            <p>השחלות בתוואי קיים/חדש, סידור וניהול תשתית בשטח, עבודה נקייה ומבוקרת.</p>
           </div>
 
           <div class="card">
             <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 9l8-4 8 4v10l-8 4-8-4V9z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z" stroke="currentColor" stroke-width="1.6"/></svg>
-              </div>
+              <div class="pill" aria-hidden="true">🔥</div>
+              <h3>ריתוכים</h3>
+            </div>
+            <p>ריתוכי סיבים, בדיקות ואיתור תקלות, גימור ותיעוד בהתאם לפרויקט.</p>
+          </div>
+
+          <div class="card">
+            <div class="top">
+              <div class="pill" aria-hidden="true">📡</div>
+              <h3>הקמת אתרי תקשורת</h3>
+            </div>
+            <p>הקמת אתרי תקשורת, ארונות, נקודות קצה, הכנה למסירה מסודרת.</p>
+          </div>
+
+          <div class="card">
+            <div class="top">
+              <div class="pill" aria-hidden="true">📷</div>
               <h3>מצלמות (CCTV)</h3>
             </div>
-            <p>פריסה ותשתיות למצלמות, נקודות/כבלים, תיאום התקנות והכנה למסירה — כולל סדר ותיעוד.</p>
+            <p>תשתיות למצלמות, נקודות/כבלים, תיאום התקנות והכנה לתפעול.</p>
+          </div>
+
+          <div class="card">
+            <div class="top">
+              <div class="pill" aria-hidden="true">🛠️</div>
+              <h3>אחזקה תשתיות</h3>
+            </div>
+            <p>טיפול ותיקון תקלות, שיפור תשתית קיימת, שירות שוטף לפי צורך.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="capabilities" class="section">
+    <section id="why" class="section">
       <div class="container">
         <h2>למה לעבוד איתנו</h2>
-        <p class="lead">מייצרים ודאות בפרויקטים טכניים: סדר, מדידה, שקיפות ותוצאה מקצועית.</p>
+        <p class="lead">אנחנו מביאים סדר לפרויקט טכני: סטנדרט ביצוע, תיאום גורמים ותיעוד שמקל על התחזוקה.</p>
 
         <div class="split">
           <div class="card">
             <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.6 4.1L18 22l-6-3.8L6 22l1.6-8.9L2 9h7l3-7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              </div>
-              <h3>ביצוע ותיעוד ברמה גבוהה</h3>
+              <div class="pill" aria-hidden="true">✅</div>
+              <h3>איכות, סדר ותיעוד</h3>
             </div>
             <ul class="list">
-              <li><span class="check" aria-hidden="true">✓</span><span>תיוג, סדר וסטנדרט התקנה עקבי לאורך כל האתר.</span></li>
-              <li><span class="check" aria-hidden="true">✓</span><span>בדיקות איכות (QA) לפני מסירה ותיקונים במקום.</span></li>
-              <li><span class="check" aria-hidden="true">✓</span><span>מסירה מסודרת: נקודות, ארונות, תרשימים/רשימות לפי צורך.</span></li>
+              <li><span class="check">✓</span><span>תיוג, סדר וסטנדרט התקנה עקבי.</span></li>
+              <li><span class="check">✓</span><span>בדיקות איכות לפני מסירה ותיקונים בשטח.</span></li>
+              <li><span class="check">✓</span><span>תיעוד ומסירה שמאפשרים תחזוקה קלה.</span></li>
             </ul>
           </div>
 
           <div class="card">
             <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 7h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 17h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/></svg>
-              </div>
-              <h3>ניהול פרויקט ותיאום גורמים</h3>
+              <div class="pill" aria-hidden="true">📅</div>
+              <h3>ניהול פרויקט ותיאום</h3>
             </div>
             <ul class="list">
-              <li><span class="check" aria-hidden="true">✓</span><span>תיאום עם קבלנים/ספקים/פיקוח – בלי “כדור שלג”.</span></li>
-              <li><span class="check" aria-hidden="true">✓</span><span>עמידה בלו״ז עם דיווחים ברורים ושקיפות.</span></li>
-              <li><span class="check" aria-hidden="true">✓</span><span>פתרון בעיות בשטח במהירות, עם מינימום הפרעה לשגרה.</span></li>
+              <li><span class="check">✓</span><span>עמידה בלו״ז ודיווח ברור.</span></li>
+              <li><span class="check">✓</span><span>תיאום עם ספקים/קבלנים/פיקוח.</span></li>
+              <li><span class="check">✓</span><span>פתרון בעיות בזמן אמת עם מינימום הפרעה.</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="process" class="section">
+    <section id="clients" class="section">
       <div class="container">
-        <h2>איך זה עובד</h2>
-        <p class="lead">תהליך קצר וברור שמונע הפתעות: אפיון → תוכנית → ביצוע → בדיקות → מסירה.</p>
+        <h2>לקוחות ופרויקטים</h2>
+        <p class="lead">
+          כאן נציג שמות ולוגואים. כרגע שמתי מקומות לדוגמה —
+          אחרי שתעלה לוגואים לתיקייה <b>images/clients</b>, נעדכן את הרשימה.
+        </p>
 
-        <div class="grid3">
-          <div class="card">
-            <div class="top">
-              <div class="pill" aria-hidden="true">1</div>
-              <h3>אפיון ותכנון</h3>
-            </div>
-            <p>הבנת הדרישות, סיור/מדידה, הגדרת נקודות ומסלול עבודה, והכנת תוכנית ביצוע.</p>
-          </div>
-          <div class="card">
-            <div class="top">
-              <div class="pill" aria-hidden="true">2</div>
-              <h3>ביצוע בשטח</h3>
-            </div>
-            <p>הקמה, סידור ותיוג, תיאום עם גורמים רלוונטיים, ועבודה לפי סטנדרט איכות.</p>
-          </div>
-          <div class="card">
-            <div class="top">
-              <div class="pill" aria-hidden="true">3</div>
-              <h3>בדיקות ומסירה</h3>
-            </div>
-            <p>QA, בדיקות תקינות, תיקונים, ותיעוד/מסירה מסודרת בהתאם לצורך.</p>
-          </div>
+        <div class="clients">
+          <!-- החלף/הוסף פריטים לפי מה שתעלה -->
+          <div class="client"><img src="images/clients/client-1.png" alt="לקוח 1" onerror="this.parentElement.style.display='none'"></div>
+          <div class="client"><img src="images/clients/client-2.png" alt="לקוח 2" onerror="this.parentElement.style.display='none'"></div>
+          <div class="client"><img src="images/clients/client-3.png" alt="לקוח 3" onerror="this.parentElement.style.display='none'"></div>
+          <div class="client"><img src="images/clients/client-4.png" alt="לקוח 4" onerror="this.parentElement.style.display='none'"></div>
+          <div class="client"><img src="images/clients/client-5.png" alt="לקוח 5" onerror="this.parentElement.style.display='none'"></div>
+          <div class="client"><img src="images/clients/client-6.png" alt="לקוח 6" onerror="this.parentElement.style.display='none'"></div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <div class="container projects">
-        <div>
-          <h2>פרויקטים לדוגמה</h2>
-          <p class="lead">
-      עבודה עם חברות התקשורות המובילות בענף:פרטנר, הוט, סלקום, בזק ועוד...
-            עבודה עם חברות בנייה המובילות בארץ: אלקטרה, מנורה, דניה סיבוס.
-            הכנת תשתית לקיבוצים ומושבים עבור חברות FUTURE, משקי השיטה ועוד...
-          
-          </p>
+    <section id="gallery" class="section">
+      <div class="container">
+        <h2>גלריית עבודות</h2>
+        <p class="lead">תמונות מהשטח. העלה תמונות לתיקייה <b>images/gallery</b> וקרא להן 01.jpg, 02.jpg…</p>
 
-          <div class="card">
-            <div class="top">
-              <div class="pill" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 20V10l6-6 6 6v10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              </div>
-              <h3>דוגמה: פריסת תשתית תקשורת באתר מסחרי</h3>
-            </div>
-            <p>
-              תכנון מסלול, הקמת ארונות/נקודות קצה, הכנה למצלמות, תיוג ותיעוד מלא למסירה.
-              <br><span style="color:var(--muted);font-weight:700">רוצה להוסיף תמונות?</span> אפשר להעלות ל-repo תיקייה בשם <code>images</code> ולשלב כאן.
-            </p>
-            <div class="tagrow">
-              <span class="tag">Fiber</span>
-              <span class="tag">Cabinet</span>
-              <span class="tag">Labeling</span>
-              <span class="tag">CCTV Ready</span>
-            </div>
-          </div>
+        <div class="gallery">
+          <div class="gitem"><img src="images/gallery/01.jpg" alt="עבודה 1" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">סיבים / תשתיות</div></div>
+          <div class="gitem"><img src="images/gallery/02.jpg" alt="עבודה 2" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">השחלות / תוואי</div></div>
+          <div class="gitem"><img src="images/gallery/03.jpg" alt="עבודה 3" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">אתר תקשורת</div></div>
+          <div class="gitem"><img src="images/gallery/04.jpg" alt="עבודה 4" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">ארונות / סידור</div></div>
+          <div class="gitem"><img src="images/gallery/05.jpg" alt="עבודה 5" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">מצלמות / תשתיות</div></div>
+          <div class="gitem"><img src="images/gallery/06.jpg" alt="עבודה 6" onerror="this.closest('.gitem').style.display='none'"><div class="gcap">בדיקות / מסירה</div></div>
         </div>
-
-        <aside class="card" aria-label="תעודת זהות">
-          <div class="top">
-            <div class="pill" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.4 7-10V6l-7-3-7 3v5c0 5.6 7 10 7 10z" stroke="currentColor" stroke-width="1.6"/></svg>
-            </div>
-            <h3>סיכום מהיר</h3>
-          </div>
-          <p>תשתיות סיבים, תקשורת ומצלמות — עם ניהול פרויקט שמייצר שקט.</p>
-          <ul class="list">
-            <li><span class="check" aria-hidden="true">✓</span><span>פריסה חכמה ומסודרת</span></li>
-            <li><span class="check" aria-hidden="true">✓</span><span>איכות, בדיקות ותיעוד</span></li>
-            <li><span class="check" aria-hidden="true">✓</span><span>עמידה בלו״ז ושקיפות</span></li>
-          </ul>
-        </aside>
       </div>
     </section>
 
     <section id="contact" class="section">
       <div class="container">
         <h2>יצירת קשר</h2>
-        <p class="lead">רוצים הצעת מחיר או שיחה קצרה? שלחו הודעה בוואטסאפ או התקשרו.</p>
+        <p class="lead">רוצים הצעת מחיר או שיחה קצרה? דברו איתנו ונחזור אליכם מהר.</p>
 
         <div class="contact">
           <div class="field">
-            <small>טלפון</small>
-            <!-- TODO: עדכן מספר אמיתי -->
-            <strong><a href="tel:+972545467122">054-5467122</a></strong>
-          </div>
-
-          <div class="field">
-            <small>וואטסאפ</small>
-            <!-- TODO: עדכן מספר אמיתי -->
-            <strong><a target="_blank" rel="noopener" href="https://wa.me/972545467122">שלחו הודעה בוואטסאפ</a></strong>
+            <small>טלפון / וואטסאפ</small>
+            <strong>
+              <a href="tel:+972545467122">054-546-7122</a>
+              •
+              <a target="_blank" rel="noopener" href="https://wa.me/972545467122">שלחו הודעה</a>
+            </strong>
           </div>
 
           <div class="field">
             <small>אימייל</small>
-            <!-- TODO: עדכן מייל אמיתי -->
             <strong><a href="mailto:ilan.s@shats.co.il">ilan.s@shats.co.il</a></strong>
           </div>
 
           <div class="field">
             <small>אזור פעילות</small>
-            <!-- TODO: עדכן אזור פעילות -->
             <strong>כל הארץ</strong>
+          </div>
+
+          <div class="field">
+            <small>זמינות</small>
+            <strong>פרויקטים / אחזקה / קריאות שירות</strong>
           </div>
         </div>
 
         <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="https://wa.me/9725XXXXXXXX" target="_blank" rel="noopener">שלחו הודעה עכשיו</a>
+          <a class="btn btn-primary" href="https://wa.me/972545467122" target="_blank" rel="noopener">שלחו הודעה עכשיו</a>
           <a class="btn" href="tel:+972545467122">שיחה מהירה</a>
         </div>
       </div>
@@ -576,9 +589,10 @@
 
     <footer>
       <div class="container foot">
-        <div>© <span id="y"></span> SHATSAEA • כל הזכויות שמורות</div>
+        <div>© <span id="y"></span> שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ • כל הזכויות שמורות</div>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
           <a href="#services" style="text-decoration:none;color:var(--muted)">שירותים</a>
+          <a href="#gallery" style="text-decoration:none;color:var(--muted)">גלריה</a>
           <a href="#contact" style="text-decoration:none;color:var(--muted)">יצירת קשר</a>
         </div>
       </div>
