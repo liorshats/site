@@ -105,15 +105,14 @@
   padding:66px 0 30px;
   position: relative;
   overflow: hidden;
-}
-.hero::before{
+}.hero::before{
   content:"";
   position:absolute;
   inset:0;
   background: url("images/hero-fiber.jpg") center/cover no-repeat;
-  opacity: .90; /* בהיר יותר */
-  filter: saturate(1.1) contrast(1.05) brightness(1.28);
-  transform: scale(1.03);
+  opacity: .95;
+  filter: none;              /* חשוב: בלי פילטרים שמרככים */
+  transform: none;           /* חשוב: בלי scale שמטשטש קצת */
 }
 .hero::after{
   content:"";
@@ -121,6 +120,7 @@
   inset:0;
   /* שכבה ממש עדינה כדי לשמור קריאות */
   background: linear-gradient(180deg, rgba(5,8,22,.08), rgba(5,8,22,.22));
+  pointer-events: none; 
 }
 .hero > .container{position:relative}
 
@@ -438,11 +438,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="badge">
-            <span>⚡</span>
-            <span><b>סיבים אופטיים</b> • תשתיות • תקשורת • מצלמות • ניהול פרויקטים</span>
-          </div>
-
+          
           <h1>תשתיות חכמות לתקשורת מודרנית בכל הארץ.</h1>
 
           <p class="sub">
