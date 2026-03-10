@@ -116,6 +116,188 @@
     opacity:1;
     transform: translateY(0);
   }
+  html{
+  scroll-behavior: smooth;
+}
+
+/* mobile menu button */
+.menu-toggle{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:#fff;
+  font-size:24px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.menu-toggle:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* mobile menu panel */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:72px;
+  right:16px;
+  left:16px;
+  z-index:1000;
+  background: rgba(5,8,22,.96);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  padding:12px;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:14px 12px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:800;
+  border-radius:12px;
+}
+
+.mobile-menu a:hover{
+  background: rgba(255,255,255,.08);
+}
+
+.mobile-menu.open{
+  display:block;
+}
+
+/* floating whatsapp */
+.floating-wa{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  z-index:1200;
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  padding:14px 18px;
+  border-radius:999px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.floating-wa:hover{
+  transform: translateY(-2px);
+}
+
+/* back to top */
+.back-to-top{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:1200;
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:999px;
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow: 0 14px 35px rgba(0,0,0,.28);
+  display:none;
+}
+
+.back-to-top.show{
+  display:block;
+}
+
+.back-to-top:hover{
+  transform: translateY(-2px);
+}
+
+/* better spacing on mobile */
+@media (max-width: 980px){
+  .menu-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .links{
+    display:none !important;
+  }
+
+  .cta{
+    gap:8px;
+  }
+
+  .btn{
+    padding:9px 12px;
+    font-size:13px;
+  }
+
+  .brand .name b{
+    font-size:14px;
+  }
+
+  .brand .name span{
+    font-size:11px;
+  }
+
+  h1{
+    font-size:42px !important;
+    line-height:1.15;
+  }
+
+  .sub{
+    font-size:18px !important;
+  }
+}
+
+@media (max-width: 640px){
+  .nav-inner{
+    height:auto;
+    min-height:72px;
+    padding:10px 0;
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    min-width:auto;
+    max-width:100%;
+  }
+
+  .cta{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  h1{
+    font-size:34px !important;
+  }
+
+  .sub{
+    font-size:17px !important;
+    line-height:1.7;
+  }
+
+  .floating-wa{
+    left:12px;
+    bottom:12px;
+    padding:12px 15px;
+    font-size:14px;
+  }
+
+  .back-to-top{
+    right:12px;
+    bottom:12px;
+    width:44px;
+    height:44px;
+  }
+}
 }
     /* Nav */
     .nav{
@@ -491,7 +673,13 @@ transition: transform 0.3s ease;
     }
   </style>
 </head>
+<a class="floating-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  וואטסאפ
+</a>
 
+<button class="back-to-top" id="backToTop" type="button" aria-label="חזרה למעלה">
+  ↑
+</button>
 <body>
   <div class="nav">
     <div class="container nav-inner">
@@ -499,6 +687,13 @@ transition: transform 0.3s ease;
         <div class="logo" aria-hidden="true">
           <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
         </div>
+        <div class="mobile-menu" id="mobileMenu">
+  <a href="#services">שירותים</a>
+  <a href="#why">למה אנחנו</a>
+  <a href="#clients">לקוחות</a>
+  <a href="#gallery">גלריה</a>
+  <a href="#contact">יצירת קשר</a>
+</div>
         <div class="name">
           <b>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ</b>
           <span>סיבים אופטיים • תקשורת • ניהול פרויקטים • מצלמות</span>
@@ -511,6 +706,7 @@ transition: transform 0.3s ease;
         <a href="#clients">לקוחות</a>
         <a href="#gallery">גלריה</a>
         <a href="#contact">יצירת קשר</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="פתח תפריט" type="button">☰</button>
       </div>
 
       <div class="cta">
@@ -728,7 +924,7 @@ transition: transform 0.3s ease;
     { src: "images/gallery/07.jpg", cap: "השחלות" },
     { src: "images/gallery/08.jpg", cap: "עבודת צוות" },
     { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת" },
-    { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום" },
+    { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום" }
   ];
 
   let idx = 0;
@@ -739,6 +935,7 @@ transition: transform 0.3s ease;
   const nextBtn = document.getElementById("nextBtn");
 
   function renderDots() {
+    if (!dotsEl) return;
     dotsEl.innerHTML = images.map((_, i) =>
       `<button class="dot ${i===idx ? "active":""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
     ).join("");
@@ -753,6 +950,7 @@ transition: transform 0.3s ease;
   }
 
   function show() {
+    if (!imgEl || !capEl) return;
     const item = images[idx];
     imgEl.style.opacity = "0";
 
@@ -795,6 +993,35 @@ transition: transform 0.3s ease;
     renderDots();
     restart();
   }
+
+  /* mobile menu */
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuToggle?.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+    });
+  });
+
+  /* back to top */
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTop?.classList.add("show");
+    } else {
+      backToTop?.classList.remove("show");
+    }
+  });
+
+  backToTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 </script>
 </body>
 </html>
