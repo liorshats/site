@@ -47,6 +47,7 @@
     a{color:inherit}
     img{max-width:100%;display:block}
     .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
     .sr-only{
       position:absolute!important;
       width:1px!important;
@@ -59,7 +60,6 @@
       border:0!important;
     }
 
-    /* Skip link */
     .skip-link{
       position:absolute;
       top:-60px;
@@ -77,15 +77,22 @@
       top:14px;
     }
 
-    /* Focus */
     a:focus-visible,
     button:focus-visible,
     input:focus-visible,
     textarea:focus-visible,
     select:focus-visible{
-      outline:3px solid var(--focus);
-      outline-offset:3px;
-      box-shadow:none!important;
+      outline:4px solid var(--focus);
+      outline-offset:4px;
+      box-shadow:0 0 0 4px rgba(0,0,0,.22)!important;
+      border-radius:12px;
+    }
+
+    p a,
+    .field a,
+    .accessibility-card a{
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
     .section{padding:76px 0}
@@ -154,7 +161,6 @@
     }
     .btn-waze:hover{filter:brightness(1.05)}
 
-    /* NAV */
     .nav{
       position:sticky;
       top:0;
@@ -186,6 +192,11 @@
       background:#fff;
       box-shadow:0 12px 30px rgba(10,91,255,.22);
       flex:0 0 auto;
+    }
+    .brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
     .brand-text{display:flex;flex-direction:column;gap:3px}
     .brand-text b{font-size:16px;line-height:1.2}
@@ -254,7 +265,6 @@
     }
     .mobile-menu a:hover{background:rgba(255,255,255,.06)}
 
-    /* HERO */
     .hero{
       position:relative;
       overflow:hidden;
@@ -320,24 +330,23 @@
       text-shadow:0 4px 18px rgba(0,0,0,.24);
     }
 
-.hero-logo{
-  width:126px;
-  height:126px;
-  margin:16px auto 20px;
-  border-radius:26px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,.24);
-  padding:0;
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.hero-logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
+    .hero-logo{
+      width:126px;
+      height:126px;
+      margin:16px auto 20px;
+      border-radius:26px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 18px 40px rgba(0,0,0,.24);
+      padding:0;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .hero-logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
     .hero-actions{
       display:flex;
@@ -374,7 +383,6 @@
       font-weight:700;
     }
 
-    /* Cards */
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 
@@ -454,7 +462,6 @@
       margin-top:2px;
     }
 
-    /* Clients */
     .clients{
       display:grid;
       grid-template-columns:repeat(5,1fr);
@@ -489,7 +496,6 @@
       transform:scale(1.02);
     }
 
-    /* Gallery */
     .carousel{
       padding:18px;
     }
@@ -565,7 +571,6 @@
       transform:scale(1.15);
     }
 
-    /* Projects */
     .project-image{
       width:100%;
       height:220px;
@@ -581,7 +586,6 @@
       font-size:14px;
     }
 
-    /* Contact */
     .contact-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -632,7 +636,6 @@
     .action-maps{background:#fff;color:#111827}
     .action-waze{background:linear-gradient(135deg,#33c8ff,#1a9fff)}
 
-    /* Footer */
     footer{
       padding:28px 0 36px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -647,7 +650,6 @@
       flex-wrap:wrap;
     }
 
-    /* Floating */
     .floating-wa{
       position:fixed;
       left:18px;
@@ -681,7 +683,6 @@
     }
     .back-to-top.show{display:block}
 
-    /* Accessibility block */
     .accessibility-card{
       padding:22px;
       border-radius:24px;
@@ -690,7 +691,6 @@
       box-shadow:0 18px 44px rgba(0,0,0,.18);
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       *, *::before, *::after{
@@ -699,7 +699,6 @@
       }
     }
 
-    /* Responsive */
     @media (max-width: 1100px){
       .hero h1{font-size:56px}
       .hero p{font-size:21px}
@@ -729,6 +728,7 @@
     }
 
     @media (max-width: 640px){
+      body{font-size:16px}
       .nav-inner{
         min-height:76px;
         padding:10px 0;
@@ -763,7 +763,13 @@
       }
       .section{padding:58px 0}
       .section h2{font-size:28px}
-      .lead{font-size:16px}
+      .lead,
+      .card p,
+      .field strong,
+      .check-list li{
+        font-size:16px!important;
+        line-height:1.8!important;
+      }
       .project-image{height:200px}
       .action-grid{grid-template-columns:1fr}
     }
@@ -803,10 +809,12 @@
       <button
         class="menu-toggle"
         id="menuToggle"
-        aria-label="פתח תפריט"
+        aria-label="פתח תפריט ניווט"
         aria-expanded="false"
         aria-controls="mobileMenu"
-        type="button">☰</button>
+        type="button">
+        <span aria-hidden="true">☰</span>
+      </button>
 
       <div class="nav-cta">
         <a class="btn btn-dark" href="tel:+972545467122" aria-label="התקשרות למספר 0545467122">טלפון</a>
@@ -963,14 +971,16 @@
         <div class="carousel card">
           <div class="carousel-frame">
             <img id="carouselImg" src="images/gallery/01.jpg" alt="תמונה מתוך עבודות החברה">
-            <div id="carouselCap" class="carousel-cap">תכנון</div>
+            <div id="carouselCap" class="carousel-cap" role="status" aria-live="polite">תכנון</div>
           </div>
 
           <div class="carousel-controls">
             <div class="carousel-buttons">
               <button class="cbtn" id="prevBtn" type="button" aria-label="תמונה קודמת">‹</button>
               <button class="cbtn" id="nextBtn" type="button" aria-label="תמונה הבאה">›</button>
-              <button class="cbtn" id="toggleAutoBtn" type="button" aria-pressed="false" aria-label="השהה החלפה אוטומטית">⏸</button>
+              <button class="cbtn" id="toggleAutoBtn" type="button" aria-pressed="false" aria-label="השהה החלפה אוטומטית">
+                <span aria-hidden="true">⏸</span>
+              </button>
             </div>
             <div class="dots" id="dots" aria-label="בחירת תמונה בגלריה"></div>
           </div>
@@ -985,21 +995,21 @@
 
         <div class="grid3">
           <article class="card">
-            <img class="project-image" src="images/projects/project1.jpg" alt="פרויקט נתיבים מהירים">
+            <img class="project-image" src="images/projects/project1.jpg" alt="עבודות תשתית סיבים בפרויקט נתיבים מהירים עבור דניה סיבוס">
             <div class="card-top"><div class="icon-pill" aria-hidden="true">🚧</div><h3>נתיבים מהירים</h3></div>
             <p>תכנון וביצוע תשתיות סיבים אופטיים כולל השחלות, ריתוכים, התקנת מצלמות וגשרים, סידור ארונות תקשורת ובדיקות מערכת.</p>
             <div class="project-client">לקוח: דניה סיבוס</div>
           </article>
 
           <article class="card">
-            <img class="project-image" src="images/projects/project2.jpg" alt="פרויקט נתיבים מתחלפים">
+            <img class="project-image" src="images/projects/project2.jpg" alt="עבודות תקשורת וסיבים בפרויקט נתיבים מתחלפים עבור סולל ובונה">
             <div class="card-top"><div class="icon-pill" aria-hidden="true">🚧</div><h3>נתיבים מתחלפים</h3></div>
             <p>תכנון והקמת תשתיות תקשורת מתקדמות כולל השחלות סיבים, ריתוכים, חיבור מצלמות וגשרים, סידור ארונות תקשורת וביצוע בדיקות.</p>
             <div class="project-client">לקוח: סולל ובונה</div>
           </article>
 
           <article class="card">
-            <img class="project-image" src="images/projects/project3.jpg" alt="פרויקט חיבור קיבוצים ומושבים">
+            <img class="project-image" src="images/projects/project3.jpg" alt="חיבור תשתיות סיבים לבתי מגורים בקיבוצים ומושבים עבור מש">
             <div class="card-top"><div class="icon-pill" aria-hidden="true">🌐</div><h3>חיבור קיבוצים ומושבים</h3></div>
             <p>פריסת תשתיות סיבים אופטיים ליישובים כולל השחלות, ריתוכים, הפעלות והתקנות בבתי הלקוחות.</p>
             <div class="project-client">לקוח: מש</div>
@@ -1071,6 +1081,12 @@
 
           <p style="line-height:1.9;color:var(--muted);margin-top:18px">
             למרות מאמצינו להנגיש את כלל חלקי האתר, ייתכן שיתגלו חלקים שטרם הונגשו במלואם. אם נתקלתם בבעיה או בקושי בגלישה, נשמח שתעדכנו אותנו כדי שנוכל לטפל בכך בהקדם.
+          </p>
+
+          <p style="line-height:1.9;color:var(--muted);margin-top:18px">
+            אם נתקלתם ברכיב או עמוד שאינם נגישים, ניתן לפנות אלינו ונפעל לתקן את הבעיה בהקדם האפשרי.
+            בפנייה בנושא נגישות מומלץ לציין את תיאור הבעיה, באיזה עמוד נתקלתם בה, באיזה מכשיר או דפדפן השתמשתם,
+            ואם ניתן גם צילום מסך.
           </p>
 
           <p style="line-height:1.9;color:var(--muted);margin-top:18px">
@@ -1185,7 +1201,7 @@
 
     function updateToggleButton() {
       if (!toggleAutoBtn) return;
-      toggleAutoBtn.textContent = autoPlay ? "⏸" : "▶";
+      toggleAutoBtn.querySelector("span").textContent = autoPlay ? "⏸" : "▶";
       toggleAutoBtn.setAttribute("aria-label", autoPlay ? "השהה החלפה אוטומטית" : "הפעל החלפה אוטומטית");
       toggleAutoBtn.setAttribute("aria-pressed", autoPlay ? "false" : "true");
     }
