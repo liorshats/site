@@ -38,6 +38,62 @@
     }
     a{color:inherit}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    /* clients floating */
+.client{
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.client:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+  background: rgba(255,255,255,.06);
+}
+
+/* service cards hover */
+.card{
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.28);
+  border-color: rgba(53,182,255,.35);
+}
+
+/* smoother gallery image fade */
+.carousel-frame img{
+  transition: opacity .45s ease, transform .45s ease;
+}
+.carousel-frame:hover img{
+  transform: scale(1.02);
+}
+
+/* buttons nicer hover */
+.btn{
+  transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+}
+.btn:hover{
+  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+}
+
+/* hero content entrance */
+.hero h1,
+.hero .sub,
+.hero-actions{
+  opacity: 0;
+  animation: fadeUp .9s ease forwards;
+}
+.hero .sub{ animation-delay: .18s; }
+.hero-actions{ animation-delay: .34s; }
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform: translateY(24px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
 /* Hero animation */
 .hero h1{
   animation: fadeUp 1s ease forwards;
@@ -659,80 +715,86 @@ transition: transform 0.3s ease;
       </div>
     </footer>
   </main>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-  <script>
-    // שנה
-    document.getElementById('y').textContent = new Date().getFullYear();
+  const images = [
+    { src: "images/gallery/01.jpg", cap: "תכנון" },
+    { src: "images/gallery/02.jpg", cap: "תנאי שטח" },
+    { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב" },
+    { src: "images/gallery/04.jpg", cap: "ניידת סיבים" },
+    { src: "images/gallery/05.jpg", cap: "מעבדה ניידת" },
+    { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח" },
+    { src: "images/gallery/07.jpg", cap: "השחלות" },
+    { src: "images/gallery/08.jpg", cap: "עבודת צוות" },
+    { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת" },
+    { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום" },
+  ];
 
-    // Carousel (auto)
-    const images = [
-      { src: "images/gallery/01.jpg", cap: "תכנון" },
-      { src: "images/gallery/02.jpg", cap: "תנאי שטח" },
-      { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב" },
-      { src: "images/gallery/04.jpg", cap: "ניידת סיבים" },
-      { src: "images/gallery/05.jpg", cap: "מעבדה ניידת" },
-      { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח" },
-      { src: "images/gallery/07.jpg", cap: "השחלות" },
-      { src: "images/gallery/08.jpg", cap: "עבודת צוות" },
-      { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת" },
-      { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום" },
-    ];
+  let idx = 0;
+  const imgEl = document.getElementById("carouselImg");
+  const capEl = document.getElementById("carouselCap");
+  const dotsEl = document.getElementById("dots");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-    let idx = 0;
-    const imgEl = document.getElementById("carouselImg");
-    const capEl = document.getElementById("carouselCap");
-    const dotsEl = document.getElementById("dots");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+  function renderDots() {
+    dotsEl.innerHTML = images.map((_, i) =>
+      `<button class="dot ${i===idx ? "active":""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
+    ).join("");
 
-    function renderDots() {
-      dotsEl.innerHTML = images.map((_, i) =>
-        `<button class="dot ${i===idx ? "active":""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
-      ).join("");
-      dotsEl.querySelectorAll(".dot").forEach(b => {
-        b.addEventListener("click", () => {
-          idx = Number(b.dataset.i);
-          show();
-          restart();
-        });
+    dotsEl.querySelectorAll(".dot").forEach(b => {
+      b.addEventListener("click", () => {
+        idx = Number(b.dataset.i);
+        show();
+        restart();
       });
-    }
+    });
+  }
 
-    function show() {
-      const item = images[idx];
-      imgEl.style.opacity = "0";
-      setTimeout(() => {
-        imgEl.src = item.src;
-        capEl.textContent = item.cap;
-        imgEl.style.opacity = "1";
-        renderDots();
-      }, 180);
-    }
+  function show() {
+    const item = images[idx];
+    imgEl.style.opacity = "0";
 
-    function next() { idx = (idx + 1) % images.length; show(); }
-    function prev() { idx = (idx - 1 + images.length) % images.length; show(); }
-
-    prevBtn?.addEventListener("click", () => { prev(); restart(); });
-    nextBtn?.addEventListener("click", () => { next(); restart(); });
-
-    let timer = null;
-    function restart() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(next, 3500); // כל 3.5 שניות
-    }
-
-    if (imgEl && capEl && dotsEl) {
-      imgEl.style.transition = "opacity .18s ease";
+    setTimeout(() => {
+      imgEl.src = item.src;
+      capEl.textContent = item.cap;
+      imgEl.style.opacity = "1";
       renderDots();
-      restart();
-    }
-    /* Parallax hero background */
-window.addEventListener("scroll", function() {
-  const hero = document.querySelector(".hero");
-  const scroll = window.pageYOffset;
+    }, 220);
+  }
 
-  hero.style.backgroundPositionY = scroll * 0.3 + "px";
-});
-  </script>
+  function next() {
+    idx = (idx + 1) % images.length;
+    show();
+  }
+
+  function prev() {
+    idx = (idx - 1 + images.length) % images.length;
+    show();
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    prev();
+    restart();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    next();
+    restart();
+  });
+
+  let timer = null;
+  function restart() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(next, 4000);
+  }
+
+  if (imgEl && capEl && dotsEl) {
+    imgEl.style.transition = "opacity .45s ease, transform .45s ease";
+    renderDots();
+    restart();
+  }
+</script>
 </body>
 </html>
