@@ -133,12 +133,12 @@
 
 /* כרטיס שקוף מאחורי הטקסט בשביל קריאות */
 .hero-grid > div{
-  background: rgba(5,8,22,.32);
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 22px;
-  padding: 24px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 24px 0;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 /* טקסט חד */
@@ -148,6 +148,21 @@
 }
 .hero .sub{
   color: rgba(255,255,255,.92);
+}
+    .hero-logo-big{
+  margin: 18px 0 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-logo-big img{
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 20px;
+  background: rgba(255,255,255,.88);
+  padding: 8px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.28);
 }
     }
     .badge{
@@ -445,6 +460,9 @@
             <b>שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
             כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת עם סדר, תיעוד ועמידה בלו״ז.
           </p>
+          <div class="hero-logo-big">
+  <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
+</div>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">
