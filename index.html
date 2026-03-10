@@ -18,15 +18,15 @@
       --bg2:#091932;
       --surface:rgba(255,255,255,.05);
       --surface-2:rgba(255,255,255,.08);
-      --surface-3:rgba(255,255,255,.12);
-      --line:rgba(255,255,255,.10);
+      --line:rgba(255,255,255,.12);
       --text:#eef4ff;
       --muted:#b9c8ef;
       --blue:#0a5bff;
       --blue2:#35b6ff;
       --green:#25d366;
       --maps:#ffffff;
-      --maps-text:#101828;
+      --maps-text:#111827;
+      --focus:#ffd54a;
       --shadow:0 18px 60px rgba(0,0,0,.35);
       --radius:24px;
       --max:1180px;
@@ -47,6 +47,46 @@
     a{color:inherit}
     img{max-width:100%;display:block}
     .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .sr-only{
+      position:absolute!important;
+      width:1px!important;
+      height:1px!important;
+      padding:0!important;
+      margin:-1px!important;
+      overflow:hidden!important;
+      clip:rect(0,0,0,0)!important;
+      white-space:nowrap!important;
+      border:0!important;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      top:-60px;
+      right:14px;
+      z-index:3000;
+      background:#fff;
+      color:#111;
+      text-decoration:none;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    }
+    .skip-link:focus{
+      top:14px;
+    }
+
+    /* Focus */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible{
+      outline:3px solid var(--focus);
+      outline-offset:3px;
+      box-shadow:none!important;
+    }
 
     .section{padding:76px 0}
     .section h2{
@@ -63,7 +103,6 @@
       font-size:18px;
     }
 
-    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -78,7 +117,6 @@
       font-weight:900;
       transition:.22s ease;
       cursor:pointer;
-      box-shadow:none;
       min-height:48px;
     }
     .btn:hover{
@@ -107,20 +145,16 @@
       border:1px solid rgba(255,255,255,.14);
       box-shadow:0 12px 28px rgba(0,0,0,.14);
     }
-    .btn-maps:hover{
-      background:#f3f6fb;
-    }
+    .btn-maps:hover{background:#f3f6fb}
     .btn-waze{
       background:linear-gradient(135deg,#33c8ff,#1a9fff);
       color:#fff;
       border:none;
       box-shadow:0 12px 28px rgba(26,159,255,.28);
     }
-    .btn-waze:hover{
-      filter:brightness(1.05);
-    }
+    .btn-waze:hover{filter:brightness(1.05)}
 
-    /* Nav */
+    /* NAV */
     .nav{
       position:sticky;
       top:0;
@@ -220,7 +254,7 @@
     }
     .mobile-menu a:hover{background:rgba(255,255,255,.06)}
 
-    /* Hero */
+    /* HERO */
     .hero{
       position:relative;
       overflow:hidden;
@@ -377,16 +411,8 @@
       font-weight:900;
       font-size:18px;
     }
-    .card h3{
-      margin:0;
-      font-size:18px;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:15px;
-    }
+    .card h3{margin:0;font-size:18px}
+    .card p{margin:0;color:var(--muted);line-height:1.8;font-size:15px}
 
     .check-list{
       margin:12px 0 0;
@@ -492,6 +518,12 @@
       justify-content:space-between;
       gap:12px;
       margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .carousel-buttons{
+      display:flex;
+      gap:10px;
+      align-items:center;
     }
     .cbtn{
       width:48px;
@@ -564,14 +596,6 @@
       line-height:1.7;
     }
     .field a{word-break:break-word}
-
-    .contact-actions,
-    .map-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:16px;
-    }
 
     .action-grid{
       display:grid;
@@ -649,17 +673,23 @@
     }
     .back-to-top.show{display:block}
 
-    /* Animations */
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(24px)}
-      to{opacity:1;transform:translateY(0)}
+    /* Accessibility block */
+    .accessibility-card{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      box-shadow:0 18px 44px rgba(0,0,0,.18);
     }
-    .hero-badge{animation:fadeUp .7s ease both}
-    .hero h1{animation:fadeUp .95s ease both}
-    .hero p{animation:fadeUp 1.18s ease both}
-    .hero-logo{animation:fadeUp 1.35s ease both}
-    .hero-actions{animation:fadeUp 1.55s ease both}
-    .hero-strip{animation:fadeUp 1.75s ease both}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *, *::before, *::after{
+        animation:none!important;
+        transition:none!important;
+      }
+    }
 
     /* Responsive */
     @media (max-width: 1100px){
@@ -670,9 +700,7 @@
     }
 
     @media (max-width: 920px){
-      .nav-inner{
-        grid-template-columns:auto 1fr auto;
-      }
+      .nav-inner{grid-template-columns:auto 1fr auto}
       .links{display:none}
       .menu-toggle{
         display:inline-flex;
@@ -699,43 +727,20 @@
         grid-template-columns:1fr auto auto;
         gap:10px;
       }
-      .brand{
-        min-width:auto;
-        max-width:100%;
-      }
-      .brand-logo{
-        width:52px;
-        height:52px;
-      }
+      .brand{min-width:auto;max-width:100%}
+      .brand-logo{width:52px;height:52px}
       .nav-cta{
         width:100%;
         grid-column:1 / -1;
         justify-content:flex-start;
         flex-wrap:wrap;
       }
-      .hero{
-        min-height:auto;
-        padding:48px 0 34px;
-      }
-      .hero h1{
-        font-size:34px;
-        line-height:1.16;
-      }
-      .hero p{
-        font-size:17px;
-        line-height:1.75;
-      }
-      .hero-logo{
-        width:96px;
-        height:96px;
-        border-radius:20px;
-      }
-      .hero-strip{
-        grid-template-columns:1fr;
-      }
-      .clients{
-        grid-template-columns:repeat(2,1fr);
-      }
+      .hero{min-height:auto;padding:48px 0 34px}
+      .hero h1{font-size:34px;line-height:1.16}
+      .hero p{font-size:17px;line-height:1.75}
+      .hero-logo{width:96px;height:96px;border-radius:20px}
+      .hero-strip{grid-template-columns:1fr}
+      .clients{grid-template-columns:repeat(2,1fr)}
       .floating-wa{
         left:12px;
         bottom:12px;
@@ -748,35 +753,28 @@
         width:44px;
         height:44px;
       }
-      .section{
-        padding:58px 0;
-      }
-      .section h2{
-        font-size:28px;
-      }
-      .lead{
-        font-size:16px;
-      }
-      .project-image{
-        height:200px;
-      }
+      .section{padding:58px 0}
+      .section h2{font-size:28px}
+      .lead{font-size:16px}
+      .project-image{height:200px}
       .action-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">דלג לתוכן המרכזי</a>
 
-  <a class="floating-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <a class="floating-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="פתח שיחה בוואטסאפ">
     וואטסאפ
   </a>
 
-  <button class="back-to-top" id="backToTop" type="button" aria-label="חזרה למעלה">↑</button>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="חזרה לראש העמוד">↑</button>
 
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="חזרה לראש העמוד">
         <div class="brand-logo">
-          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
+          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי תשתיות ופרוייקטים בע&quot;מ">
         </div>
         <div class="brand-text">
           <b>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</b>
@@ -784,35 +782,43 @@
         </div>
       </a>
 
-      <nav class="links" aria-label="ניווט">
+      <nav class="links" aria-label="ניווט ראשי">
         <a href="#services">שירותים</a>
         <a href="#why">למה אנחנו</a>
         <a href="#clients">לקוחות</a>
         <a href="#gallery">גלריה</a>
         <a href="#projects">פרויקטים</a>
         <a href="#contact">יצירת קשר</a>
+        <a href="#accessibility">נגישות</a>
       </nav>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="פתח תפריט" type="button">☰</button>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="פתח תפריט"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        type="button">☰</button>
 
       <div class="nav-cta">
-        <a class="btn btn-dark" href="tel:+972545467122">טלפון</a>
-        <a class="btn btn-whatsapp" href="https://wa.me/972545467122" target="_blank" rel="noopener">וואטסאפ</a>
+        <a class="btn btn-dark" href="tel:+972545467122" aria-label="התקשרות למספר 0545467122">טלפון</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="פתיחת שיחה בוואטסאפ">וואטסאפ</a>
       </div>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu" id="mobileMenu" aria-label="תפריט מובייל">
     <a href="#services">שירותים</a>
     <a href="#why">למה אנחנו</a>
     <a href="#clients">לקוחות</a>
     <a href="#gallery">גלריה</a>
     <a href="#projects">פרויקטים</a>
     <a href="#contact">יצירת קשר</a>
-  </div>
+    <a href="#accessibility">נגישות</a>
+  </nav>
 
-  <main id="top">
-    <section class="hero">
+  <main id="mainContent">
+    <section class="hero" id="top">
       <div class="container hero-inner">
         <div class="hero-badge">סיבים אופטיים • תשתיות • תקשורת • מצלמות • ניהול פרויקטים</div>
 
@@ -820,11 +826,11 @@
 
         <p>
           <b>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
-          כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת עם סדר, תיעוד ועמידה בלו״ז.
+          כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת — עם סדר, תיעוד ועמידה בלו״ז.
         </p>
 
         <div class="hero-logo">
-          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
+          <img src="images/logo.png" alt="לוגו החברה">
         </div>
 
         <div class="hero-actions">
@@ -832,7 +838,7 @@
           <a class="btn btn-dark" href="#services">לשירותים</a>
         </div>
 
-        <div class="hero-strip">
+        <div class="hero-strip" aria-label="נתוני מפתח">
           <div class="hero-stat">
             <strong>24/7</strong>
             <span>זמינות מלאה</span>
@@ -853,137 +859,140 @@
       </div>
     </section>
 
-    <section id="services" class="section">
+    <section id="services" class="section" aria-labelledby="services-title">
       <div class="container">
-        <h2>שירותים</h2>
-        <p class="lead">מעטפת מלאה לפרויקטי סיבים ותקשורת משלב התכנון ועד האחזקה.</p>
+        <h2 id="services-title">שירותים</h2>
+        <p class="lead">מעטפת מלאה לפרויקטי סיבים ותקשורת — משלב התכנון ועד האחזקה.</p>
 
         <div class="grid3">
           <article class="card">
-            <div class="card-top"><div class="icon-pill">🧭</div><h3>תכנון פרויקטים</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🧭</div><h3>תכנון פרויקטים</h3></div>
             <p>אפיון, תכנון מסלולים ונקודות, הכנת תוכנית עבודה ותיאום מול הגורמים הרלוונטיים.</p>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">🧵</div><h3>השחלות</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🧵</div><h3>השחלות</h3></div>
             <p>השחלות בתוואי קיים או חדש, סידור תשתיות בשטח, עבודה נקייה ומבוקרת.</p>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">🔥</div><h3>ריתוכים</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🔥</div><h3>ריתוכים</h3></div>
             <p>ריתוכי סיבים, איתור תקלות, בדיקות תקינות, גימור ותיעוד לפי צורכי הפרויקט.</p>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">📡</div><h3>הקמת אתרי תקשורת</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">📡</div><h3>הקמת אתרי תקשורת</h3></div>
             <p>הקמת אתרי תקשורת, ארונות, נקודות קצה והכנה למסירה מסודרת.</p>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">📷</div><h3>מצלמות (CCTV)</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">📷</div><h3>מצלמות (CCTV)</h3></div>
             <p>תשתיות למצלמות, הכנה לנקודות, כבלים, תיאום התקנות והכנה לתפעול תקין.</p>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">🛠️</div><h3>אחזקה תשתיות</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🛠️</div><h3>אחזקה תשתיות</h3></div>
             <p>טיפול בתקלות, שדרוג תשתיות קיימות, תחזוקה שוטפת ומענה מהיר בשטח.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="why" class="section">
+    <section id="why" class="section" aria-labelledby="why-title">
       <div class="container">
-        <h2>למה לבחור בנו</h2>
-        <p class="lead">סטנדרט עבודה גבוה, ציוד מקצועי, ניהול נכון ויכולת ביצוע מדויקת משלב התכנון ועד המסירה.</p>
+        <h2 id="why-title">למה לבחור בנו</h2>
+        <p class="lead">סטנדרט עבודה גבוה, ציוד מקצועי, ניהול נכון ויכולת ביצוע מדויקת — משלב התכנון ועד המסירה.</p>
 
         <div class="split">
           <article class="card">
-            <div class="card-top"><div class="icon-pill">✅</div><h3>איכות, סדר ותיעוד</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">✅</div><h3>איכות, סדר ותיעוד</h3></div>
             <ul class="check-list">
-              <li><span class="check">✓</span><span>תיוג וסטנדרט התקנה עקבי.</span></li>
-              <li><span class="check">✓</span><span>בדיקות איכות לפני מסירה ותיקונים בשטח.</span></li>
-              <li><span class="check">✓</span><span>מסירה מסודרת שמאפשרת תחזוקה קלה.</span></li>
-              <li><span class="check">✓</span><span>ציוד מקצועי וצוותים מנוסים.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>תיוג וסטנדרט התקנה עקבי.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>בדיקות איכות לפני מסירה ותיקונים בשטח.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>מסירה מסודרת שמאפשרת תחזוקה קלה.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>ציוד מקצועי וצוותים מנוסים.</span></li>
             </ul>
           </article>
 
           <article class="card">
-            <div class="card-top"><div class="icon-pill">📅</div><h3>ניהול פרויקט ותיאום</h3></div>
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">📅</div><h3>ניהול פרויקט ותיאום</h3></div>
             <ul class="check-list">
-              <li><span class="check">✓</span><span>עמידה בלו״ז ודיווח ברור.</span></li>
-              <li><span class="check">✓</span><span>תיאום עם ספקים, קבלנים ופיקוח.</span></li>
-              <li><span class="check">✓</span><span>פתרון בעיות בזמן אמת.</span></li>
-              <li><span class="check">✓</span><span>זמינות 24/7.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>עמידה בלו״ז ודיווח ברור.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>תיאום עם ספקים, קבלנים ופיקוח.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>פתרון בעיות בזמן אמת.</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>זמינות 24/7.</span></li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="clients" class="section">
+    <section id="clients" class="section" aria-labelledby="clients-title">
       <div class="container">
-        <h2>לקוחות</h2>
+        <h2 id="clients-title">לקוחות</h2>
         <p class="lead">בין החברות והארגונים איתם עבדנו ועובדים.</p>
 
         <div class="clients">
-          <div class="client"><img src="images/clients/bezeq.png" alt="בזק"></div>
-          <div class="client"><img src="images/clients/cellcom.png" alt="סלקום"></div>
-          <div class="client"><img src="images/clients/unlimited.png" alt="Unlimited"></div>
-          <div class="client"><img src="images/clients/hot.png" alt="HOT"></div>
-          <div class="client"><img src="images/clients/partner.png" alt="פרטנר"></div>
-          <div class="client"><img src="images/clients/future.png" alt="Future"></div>
-          <div class="client"><img src="images/clients/mes.png" alt="MES"></div>
-          <div class="client"><img src="images/clients/soll.png" alt="סולל ובונה"></div>
-          <div class="client"><img src="images/clients/dnia.png" alt="דניה"></div>
-          <div class="client"><img src="images/clients/elctra.png" alt="אלקטרה"></div>
+          <div class="client"><img src="images/clients/bezeq.png" alt="לוגו בזק"></div>
+          <div class="client"><img src="images/clients/cellcom.png" alt="לוגו סלקום"></div>
+          <div class="client"><img src="images/clients/unlimited.png" alt="לוגו Unlimited"></div>
+          <div class="client"><img src="images/clients/hot.png" alt="לוגו HOT"></div>
+          <div class="client"><img src="images/clients/partner.png" alt="לוגו פרטנר"></div>
+          <div class="client"><img src="images/clients/future.png" alt="לוגו Future"></div>
+          <div class="client"><img src="images/clients/mes.png" alt="לוגו MES"></div>
+          <div class="client"><img src="images/clients/soll.png" alt="לוגו סולל ובונה"></div>
+          <div class="client"><img src="images/clients/dnia.png" alt="לוגו דניה סיבוס"></div>
+          <div class="client"><img src="images/clients/elctra.png" alt="לוגו אלקטרה"></div>
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="section">
+    <section id="gallery" class="section" aria-labelledby="gallery-title">
       <div class="container">
-        <h2>גלריית עבודות</h2>
+        <h2 id="gallery-title">גלריית עבודות</h2>
         <p class="lead">חלק מהעבודה שלנו בשטח.</p>
 
         <div class="carousel card">
           <div class="carousel-frame">
-            <img id="carouselImg" src="images/gallery/01.jpg" alt="גלריית עבודות">
+            <img id="carouselImg" src="images/gallery/01.jpg" alt="תמונה מתוך עבודות החברה">
             <div id="carouselCap" class="carousel-cap">תכנון</div>
           </div>
 
           <div class="carousel-controls">
-            <button class="cbtn" id="prevBtn" type="button" aria-label="תמונה קודמת">‹</button>
-            <div class="dots" id="dots"></div>
-            <button class="cbtn" id="nextBtn" type="button" aria-label="תמונה הבאה">›</button>
+            <div class="carousel-buttons">
+              <button class="cbtn" id="prevBtn" type="button" aria-label="תמונה קודמת">‹</button>
+              <button class="cbtn" id="nextBtn" type="button" aria-label="תמונה הבאה">›</button>
+              <button class="cbtn" id="toggleAutoBtn" type="button" aria-pressed="false" aria-label="השהה החלפה אוטומטית">⏸</button>
+            </div>
+            <div class="dots" id="dots" aria-label="בחירת תמונה בגלריה"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <section id="projects" class="section" aria-labelledby="projects-title">
       <div class="container">
-        <h2>פרויקטים נבחרים</h2>
+        <h2 id="projects-title">פרויקטים נבחרים</h2>
         <p class="lead">חלק מהפרויקטים בהם ביצענו עבודות תשתית, סיבים ותקשורת.</p>
 
         <div class="grid3">
           <article class="card">
-            <img class="project-image" src="images/projects/project1.jpg" alt="נתיבים מהירים">
-            <div class="card-top"><div class="icon-pill">🚧</div><h3>נתיבים מהירים</h3></div>
+            <img class="project-image" src="images/projects/project1.jpg" alt="פרויקט נתיבים מהירים">
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🚧</div><h3>נתיבים מהירים</h3></div>
             <p>תכנון וביצוע תשתיות סיבים אופטיים כולל השחלות, ריתוכים, התקנת מצלמות וגשרים, סידור ארונות תקשורת ובדיקות מערכת.</p>
             <div class="project-client">לקוח: דניה סיבוס</div>
           </article>
 
           <article class="card">
-            <img class="project-image" src="images/projects/project2.jpg" alt="נתיבים מתחלפים">
-            <div class="card-top"><div class="icon-pill">🚧</div><h3>נתיבים מתחלפים</h3></div>
+            <img class="project-image" src="images/projects/project2.jpg" alt="פרויקט נתיבים מתחלפים">
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🚧</div><h3>נתיבים מתחלפים</h3></div>
             <p>תכנון והקמת תשתיות תקשורת מתקדמות כולל השחלות סיבים, ריתוכים, חיבור מצלמות וגשרים, סידור ארונות תקשורת וביצוע בדיקות.</p>
             <div class="project-client">לקוח: סולל ובונה</div>
           </article>
 
           <article class="card">
-            <img class="project-image" src="images/projects/project3.jpg" alt="חיבור קיבוצים ומושבים">
-            <div class="card-top"><div class="icon-pill">🌐</div><h3>חיבור קיבוצים ומושבים</h3></div>
+            <img class="project-image" src="images/projects/project3.jpg" alt="פרויקט חיבור קיבוצים ומושבים">
+            <div class="card-top"><div class="icon-pill" aria-hidden="true">🌐</div><h3>חיבור קיבוצים ומושבים</h3></div>
             <p>פריסת תשתיות סיבים אופטיים ליישובים כולל השחלות, ריתוכים, הפעלות והתקנות בבתי הלקוחות.</p>
             <div class="project-client">לקוח: מש</div>
           </article>
@@ -991,9 +1000,9 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section" aria-labelledby="contact-title">
       <div class="container">
-        <h2>יצירת קשר</h2>
+        <h2 id="contact-title">יצירת קשר</h2>
         <p class="lead">רוצים הצעת מחיר, שיחת היכרות או ניווט למשרד? הנה כל הדרכים להגיע אלינו.</p>
 
         <div class="contact-grid">
@@ -1022,10 +1031,50 @@
         </div>
 
         <div class="action-grid">
-          <a class="action-card action-phone" href="tel:+972545467122">📞 התקשרו עכשיו</a>
-          <a class="action-card action-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener">💬 וואטסאפ</a>
-          <a class="action-card action-maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94">📍 Google Maps</a>
-          <a class="action-card action-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes">🚗 Waze</a>
+          <a class="action-card action-phone" href="tel:+972545467122" aria-label="התקשרו עכשיו">📞 התקשרו עכשיו</a>
+          <a class="action-card action-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="שלחו הודעה בוואטסאפ">💬 וואטסאפ</a>
+          <a class="action-card action-maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94" aria-label="פתח ניווט בגוגל מפות">📍 Google Maps</a>
+          <a class="action-card action-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes" aria-label="פתח ניווט בווייז">🚗 Waze</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="accessibility" class="section" aria-labelledby="accessibility-title">
+      <div class="container">
+        <h2 id="accessibility-title">הצהרת נגישות</h2>
+        <div class="accessibility-card">
+          <p class="lead" style="margin-bottom:16px">
+            אנו בשץ איי.אי.איי תשתיות ופרוייקטים בע"מ רואים חשיבות רבה בהנגשת האתר והשירותים הדיגיטליים לכלל המשתמשים, ובפרט לאנשים עם מוגבלות.
+          </p>
+
+          <p style="line-height:1.9;color:var(--muted)">
+            באתר זה בוצעו התאמות נגישות במטרה לאפשר גלישה נוחה, ברורה ונגישה ככל האפשר. ההתאמות בוצעו בהתאם לעקרונות הנגישות המקובלים, תוך הקפדה על מבנה תקין, ניווט מקלדת, ניגודיות מספקת, סימון פוקוס ברור, טקסטים חלופיים לתמונות ותמיכה בהעדפת משתמשים להפחתת תנועה ואנימציה.
+          </p>
+
+          <ul class="check-list" style="margin-top:18px">
+            <li><span class="check" aria-hidden="true">✓</span><span>ניווט מלא באמצעות מקלדת.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>קישור “דלג לתוכן” בתחילת הדף.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>מבנה כותרות וסמנטיקה תקינים.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>ניגודיות צבעים משופרת וקריאות גבוהה.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>טקסט חלופי לתמונות משמעותיות.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>אפשרות שליטה בגלריה המתחלפת.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>התאמה למובייל ולמסכים בגדלים שונים.</span></li>
+          </ul>
+
+          <p style="line-height:1.9;color:var(--muted);margin-top:18px">
+            למרות מאמצינו להנגיש את כלל חלקי האתר, ייתכן שיתגלו חלקים שטרם הונגשו במלואם. אם נתקלתם בבעיה או בקושי בגלישה, נשמח שתעדכנו אותנו כדי שנוכל לטפל בכך בהקדם.
+          </p>
+
+          <p style="line-height:1.9;color:var(--muted);margin-top:18px">
+            <strong style="color:#fff">פרטי קשר בנושא נגישות:</strong><br>
+            טלפון: <a href="tel:+972545467122">054-546-7122</a><br>
+            אימייל: <a href="mailto:ilan.s@shats.co.il">ilan.s@shats.co.il</a><br>
+            כתובת: שלמה המלך 3, חדרה
+          </p>
+
+          <p style="line-height:1.9;color:var(--muted);margin-top:12px">
+            <strong style="color:#fff">תאריך עדכון אחרון:</strong> מרץ 2026
+          </p>
         </div>
       </div>
     </section>
@@ -1043,6 +1092,7 @@
           <a href="#gallery" style="text-decoration:none;color:var(--muted)">גלריה</a>
           <a href="#projects" style="text-decoration:none;color:var(--muted)">פרויקטים</a>
           <a href="#contact" style="text-decoration:none;color:var(--muted)">יצירת קשר</a>
+          <a href="#accessibility" style="text-decoration:none;color:var(--muted)">נגישות</a>
         </div>
       </div>
     </footer>
@@ -1052,36 +1102,40 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     const images = [
-      { src: "images/gallery/01.jpg", cap: "תכנון" },
-      { src: "images/gallery/02.jpg", cap: "תנאי שטח" },
-      { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב" },
-      { src: "images/gallery/04.jpg", cap: "ניידת סיבים" },
-      { src: "images/gallery/05.jpg", cap: "מעבדה ניידת" },
-      { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח" },
-      { src: "images/gallery/07.jpg", cap: "השחלות" },
-      { src: "images/gallery/08.jpg", cap: "עבודת צוות" },
-      { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת" },
-      { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום" }
+      { src: "images/gallery/01.jpg", cap: "תכנון", alt: "תמונה של עבודת תכנון תשתיות" },
+      { src: "images/gallery/02.jpg", cap: "תנאי שטח", alt: "תמונה מתנאי שטח בפרויקט תשתיות" },
+      { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב", alt: "צוות עבודה באתר תשתיות" },
+      { src: "images/gallery/04.jpg", cap: "ניידת סיבים", alt: "ניידת סיבים בשטח" },
+      { src: "images/gallery/05.jpg", cap: "מעבדה ניידת", alt: "מעבדה ניידת לעבודות סיבים" },
+      { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח", alt: "סידור מקצועי של ציוד ותשתיות" },
+      { src: "images/gallery/07.jpg", cap: "השחלות", alt: "ביצוע השחלות בתשתית" },
+      { src: "images/gallery/08.jpg", cap: "עבודת צוות", alt: "צוות עבודה בפרויקט" },
+      { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת", alt: "ארון תקשורת מסודר" },
+      { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום", alt: "עבודה בתנאי שטח משתנים" }
     ];
 
     let idx = 0;
+    let timer = null;
+    let autoPlay = true;
+
     const imgEl = document.getElementById("carouselImg");
     const capEl = document.getElementById("carouselCap");
     const dotsEl = document.getElementById("dots");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const toggleAutoBtn = document.getElementById("toggleAutoBtn");
 
     function renderDots() {
       if (!dotsEl) return;
       dotsEl.innerHTML = images.map((_, i) =>
-        `<button class="dot ${i===idx ? "active" : ""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
+        `<button class="dot ${i===idx ? "active" : ""}" data-i="${i}" aria-label="מעבר לתמונה ${i+1}" aria-pressed="${i===idx ? "true" : "false"}"></button>`
       ).join("");
 
       dotsEl.querySelectorAll(".dot").forEach(b => {
         b.addEventListener("click", () => {
           idx = Number(b.dataset.i);
           show();
-          restart();
+          if (autoPlay) restart();
         });
       });
     }
@@ -1092,6 +1146,7 @@
       imgEl.style.opacity = "0";
       setTimeout(() => {
         imgEl.src = item.src;
+        imgEl.alt = item.alt;
         capEl.textContent = item.cap;
         imgEl.style.opacity = "1";
         renderDots();
@@ -1108,37 +1163,66 @@
       show();
     }
 
+    function stopAuto() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    function restart() {
+      stopAuto();
+      if (autoPlay) {
+        timer = setInterval(next, 4000);
+      }
+    }
+
+    function updateToggleButton() {
+      if (!toggleAutoBtn) return;
+      toggleAutoBtn.textContent = autoPlay ? "⏸" : "▶";
+      toggleAutoBtn.setAttribute("aria-label", autoPlay ? "השהה החלפה אוטומטית" : "הפעל החלפה אוטומטית");
+      toggleAutoBtn.setAttribute("aria-pressed", autoPlay ? "false" : "true");
+    }
+
     prevBtn?.addEventListener("click", () => {
       prev();
-      restart();
+      if (autoPlay) restart();
     });
 
     nextBtn?.addEventListener("click", () => {
       next();
-      restart();
+      if (autoPlay) restart();
     });
 
-    let timer = null;
-    function restart() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(next, 4000);
-    }
+    toggleAutoBtn?.addEventListener("click", () => {
+      autoPlay = !autoPlay;
+      updateToggleButton();
+      if (autoPlay) restart();
+      else stopAuto();
+    });
 
     if (imgEl && capEl && dotsEl) {
       renderDots();
-      restart();
+      updateToggleButton();
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!prefersReducedMotion) {
+        restart();
+      } else {
+        autoPlay = false;
+        updateToggleButton();
+      }
     }
 
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
 
     menuToggle?.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
     mobileMenu?.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         mobileMenu.classList.remove("open");
+        menuToggle?.setAttribute("aria-expanded", "false");
       });
     });
 
