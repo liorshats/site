@@ -38,7 +38,29 @@
     }
     a{color:inherit}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
+/* Hero animation */
+.hero h1{
+  animation: fadeUp 1s ease forwards;
+}
 
+.hero .sub{
+  animation: fadeUp 1.4s ease forwards;
+}
+
+.hero-actions{
+  animation: fadeUp 1.8s ease forwards;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform: translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
     /* Nav */
     .nav{
       position:sticky; top:0; z-index:50;
@@ -113,6 +135,7 @@
   opacity: .95;
   filter: none;              /* חשוב: בלי פילטרים שמרככים */
   transform: none;           /* חשוב: בלי scale שמטשטש קצת */
+transition: transform 0.3s ease;
 }
 .hero::after{
   content:"";
@@ -703,6 +726,13 @@
       renderDots();
       restart();
     }
+    /* Parallax hero background */
+window.addEventListener("scroll", function() {
+  const hero = document.querySelector(".hero");
+  const scroll = window.pageYOffset;
+
+  hero.style.backgroundPositionY = scroll * 0.3 + "px";
+});
   </script>
 </body>
 </html>
