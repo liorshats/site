@@ -14,74 +14,101 @@
 
   <style>
     :root{
-      --bg0:#050816;
-      --bg1:#070b1f;
-      --txt:#eaf0ff;
-      --muted:#a9b7e6;
+      --bg:#061126;
+      --bg2:#081935;
+      --surface:rgba(255,255,255,.05);
+      --surface-2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.12);
+      --text:#eef4ff;
+      --muted:#b8c6ee;
       --blue:#0a5bff;
       --blue2:#35b6ff;
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --line:rgba(255,255,255,.12);
+      --green:#25d366;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1180px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Hebrew", sans-serif;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans Hebrew",sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(900px 420px at 85% 10%, rgba(53,182,255,.22), transparent 60%),
-        radial-gradient(800px 500px at 20% 0%, rgba(10,91,255,.20), transparent 60%),
-        radial-gradient(700px 450px at 70% 90%, rgba(10,91,255,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      color:var(--txt);
+        radial-gradient(900px 500px at 85% 5%, rgba(53,182,255,.16), transparent 60%),
+        radial-gradient(800px 450px at 15% 0%, rgba(10,91,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
     a{color:inherit}
-    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
 
     .btn{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
-      padding:11px 16px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
+      padding:12px 18px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      color:#fff;
       text-decoration:none;
       font-weight:900;
-      font-size:14px;
-      background:rgba(255,255,255,.06);
-      transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
+      transition:.22s ease;
+      cursor:pointer;
     }
     .btn:hover{
       transform:translateY(-2px);
-      background:rgba(255,255,255,.10);
-      box-shadow:0 10px 24px rgba(0,0,0,.20);
+      background:var(--surface-2);
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
     }
     .btn-primary{
-      background:linear-gradient(135deg, var(--blue), var(--blue2));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 18px 40px rgba(10,91,255,.28);
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      border-color:transparent;
+      box-shadow:0 14px 34px rgba(10,91,255,.28);
     }
-    .btn-primary:hover{filter:brightness(1.03)}
-    .icon{width:18px;height:18px;display:inline-block}
+    .btn-whatsapp{
+      background:linear-gradient(135deg,#25d366,#1fb85a);
+      border-color:transparent;
+    }
+    .btn-dark{
+      background:rgba(0,0,0,.30);
+      border-color:rgba(255,255,255,.16);
+    }
 
-    /* Nav */
+    .section{padding:72px 0}
+    .section h2{
+      margin:0 0 12px;
+      font-size:34px;
+      line-height:1.15;
+      letter-spacing:-.3px;
+    }
+    .lead{
+      margin:0 0 22px;
+      max-width:860px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:18px;
+    }
+
+    /* NAV */
     .nav{
       position:sticky;
       top:0;
-      z-index:1000;
-      background:linear-gradient(180deg, rgba(5,8,22,.92), rgba(5,8,22,.78));
-      backdrop-filter:blur(12px);
+      z-index:1100;
       border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(5,11,24,.94), rgba(5,11,24,.78));
+      backdrop-filter:blur(12px);
     }
     .nav-inner{
-      display:flex;
+      min-height:80px;
+      display:grid;
+      grid-template-columns:auto 1fr auto auto;
       align-items:center;
-      justify-content:space-between;
-      min-height:78px;
-      gap:14px;
+      gap:16px;
     }
     .brand{
       display:flex;
@@ -90,111 +117,97 @@
       text-decoration:none;
       min-width:280px;
     }
-    .logo{
-      width:58px;
-      height:58px;
+    .brand-logo{
+      width:60px;
+      height:60px;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 10px 30px rgba(10,91,255,.30);
-      flex:0 0 auto;
       background:#fff;
+      box-shadow:0 12px 30px rgba(10,91,255,.22);
+      flex:0 0 auto;
     }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .brand .name{
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
-    .brand .name b{
-      font-size:16px;
-      line-height:1.2;
-    }
-    .brand .name span{
-      font-size:13px;
-      color:var(--muted);
-      font-weight:900;
-    }
+    .brand-text{display:flex;flex-direction:column;gap:3px}
+    .brand-text b{font-size:16px;line-height:1.2}
+    .brand-text span{font-size:13px;color:var(--muted);font-weight:800}
 
     .links{
       display:flex;
-      gap:10px;
+      justify-content:center;
       align-items:center;
+      gap:8px;
     }
     .links a{
       text-decoration:none;
       color:var(--muted);
+      font-size:14px;
       font-weight:800;
-      font-size:13px;
-      padding:10px 10px;
+      padding:10px 12px;
       border-radius:12px;
+      transition:.2s ease;
     }
     .links a:hover{
-      color:var(--txt);
+      color:#fff;
       background:rgba(255,255,255,.06);
     }
 
-    .cta{
+    .nav-cta{
       display:flex;
-      align-items:center;
       gap:10px;
+      align-items:center;
     }
 
     .menu-toggle{
       display:none;
       width:46px;
       height:46px;
+      border:none;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
+      background:var(--surface);
       color:#fff;
       font-size:24px;
-      font-weight:900;
       cursor:pointer;
+      border:1px solid var(--line);
     }
 
     .mobile-menu{
       display:none;
       position:fixed;
-      top:82px;
-      right:16px;
-      left:16px;
+      top:86px;
+      right:14px;
+      left:14px;
       z-index:1200;
-      background:rgba(5,8,22,.96);
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid var(--line);
       border-radius:18px;
-      box-shadow:0 20px 50px rgba(0,0,0,.35);
-      padding:12px;
-    }
-    .mobile-menu a{
-      display:block;
-      padding:14px 12px;
-      text-decoration:none;
-      color:#fff;
-      font-weight:800;
-      border-radius:12px;
-    }
-    .mobile-menu a:hover{
-      background:rgba(255,255,255,.08);
+      background:rgba(6,17,38,.98);
+      box-shadow:var(--shadow);
+      padding:10px;
     }
     .mobile-menu.open{display:block}
+    .mobile-menu a{
+      display:block;
+      text-decoration:none;
+      color:#fff;
+      padding:14px 12px;
+      border-radius:12px;
+      font-weight:800;
+    }
+    .mobile-menu a:hover{background:rgba(255,255,255,.06)}
 
-    /* Hero */
+    /* HERO */
     .hero{
       position:relative;
       overflow:hidden;
-      padding:72px 0 46px;
+      min-height:calc(100vh - 80px);
+      display:flex;
+      align-items:center;
+      padding:56px 0 44px;
     }
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:url("images/hero-fiber.jpg") center/cover no-repeat;
+      background:url("images/hero-fiber.jpg") center center / cover no-repeat;
       opacity:.92;
       pointer-events:none;
     }
@@ -202,305 +215,337 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.40), rgba(0,0,0,.34));
+      background:
+        linear-gradient(180deg, rgba(4,11,24,.42), rgba(4,11,24,.52)),
+        radial-gradient(900px 500px at 50% 25%, rgba(0,0,0,.08), transparent 60%);
       pointer-events:none;
     }
-    .hero > .container{
+    .hero-inner{
       position:relative;
       z-index:1;
-    }
-    .hero-grid{
       display:grid;
       grid-template-columns:1fr;
-      gap:18px;
       justify-items:center;
       text-align:center;
     }
 
-    .hero h1{
-      margin:0 0 18px;
-      font-size:62px;
-      line-height:1.1;
-      letter-spacing:-.3px;
-      color:#fff;
-      text-shadow:0 8px 24px rgba(0,0,0,.38);
-      opacity:0;
-      animation:fadeUp .9s ease forwards;
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      font-size:14px;
+      color:#dbe6ff;
+      font-weight:800;
+      margin-bottom:18px;
     }
-    .hero .sub{
+
+    .hero h1{
+      margin:0 0 16px;
+      max-width:1100px;
+      font-size:68px;
+      line-height:1.06;
+      letter-spacing:-1px;
+      text-shadow:0 8px 24px rgba(0,0,0,.28);
+    }
+    .hero p{
       margin:0 auto 18px;
-      max-width:980px;
+      max-width:940px;
       font-size:24px;
       line-height:1.8;
       color:rgba(255,255,255,.96);
-      text-shadow:0 4px 18px rgba(0,0,0,.30);
-      opacity:0;
-      animation:fadeUp 1.2s ease forwards;
+      text-shadow:0 4px 18px rgba(0,0,0,.24);
     }
 
-    .hero-logo-big{
-      margin:18px 0 10px;
-      display:flex;
-      justify-content:center;
-      opacity:0;
-      animation:fadeUp 1.45s ease forwards;
-    }
-    .hero-logo-big img{
-      width:120px;
-      height:120px;
-      object-fit:contain;
-      border-radius:22px;
+    .hero-logo{
+      width:124px;
+      height:124px;
+      margin:14px auto 18px;
+      border-radius:24px;
+      overflow:hidden;
       background:rgba(255,255,255,.92);
-      padding:8px;
-      box-shadow:0 12px 35px rgba(0,0,0,.28);
+      box-shadow:0 18px 40px rgba(0,0,0,.24);
+      padding:10px;
     }
 
     .hero-actions{
       display:flex;
+      justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      justify-content:center;
-      margin-top:14px;
-      opacity:0;
-      animation:fadeUp 1.65s ease forwards;
+      margin-top:10px;
     }
 
-    /* Sections */
-    .section{padding:42px 0}
-    .section h2{
-      margin:0 0 10px;
-      font-size:30px;
-      letter-spacing:-.2px;
-    }
-    .section p.lead{
-      margin:0 0 20px;
-      color:var(--muted);
-      line-height:1.9;
-      max-width:900px;
-    }
-
-    .grid3{
+    .hero-strip{
+      margin-top:34px;
+      width:100%;
       display:grid;
-      gap:14px;
-      grid-template-columns:repeat(3, 1fr);
-    }
-    .split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:repeat(4,1fr);
       gap:14px;
     }
-
-    .card{
-      padding:16px;
+    .hero-stat{
+      padding:18px 16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
       border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 16px 44px rgba(0,0,0,.22);
+      text-align:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
+    }
+    .hero-stat strong{
+      display:block;
+      font-size:22px;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .hero-stat span{
+      font-size:14px;
+      color:#d6e2ff;
+      font-weight:700;
+    }
+
+    /* CARDS */
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .card{
       position:relative;
       overflow:hidden;
-      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      box-shadow:0 18px 44px rgba(0,0,0,.18);
+      transition:.24s ease;
     }
     .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 22px 50px rgba(0,0,0,.28);
-      border-color:rgba(53,182,255,.35);
+      transform:translateY(-6px);
+      border-color:rgba(53,182,255,.26);
+      box-shadow:0 24px 54px rgba(0,0,0,.24);
     }
     .card::after{
       content:"";
       position:absolute;
       inset:-1px;
-      background:radial-gradient(260px 120px at 20% 0%, rgba(53,182,255,.16), transparent 55%);
+      background:radial-gradient(240px 110px at 15% 0%, rgba(53,182,255,.16), transparent 56%);
       pointer-events:none;
     }
     .card > *{position:relative}
-
-    .top{
+    .card-top{
       display:flex;
-      gap:12px;
       align-items:center;
+      gap:12px;
       margin-bottom:10px;
     }
-    .pill{
-      width:38px;
-      height:38px;
+    .icon-pill{
+      width:42px;
+      height:42px;
       border-radius:14px;
       display:grid;
       place-items:center;
       background:rgba(10,91,255,.16);
-      border:1px solid rgba(53,182,255,.25);
-      font-weight:1000;
+      border:1px solid rgba(53,182,255,.24);
+      font-weight:900;
+      font-size:18px;
     }
-    .card h3{margin:0;font-size:16px}
+    .card h3{
+      margin:0;
+      font-size:18px;
+    }
     .card p{
-      margin:8px 0 0;
+      margin:0;
       color:var(--muted);
-      line-height:1.75;
-      font-size:14px;
+      line-height:1.8;
+      font-size:15px;
     }
 
-    .list{
-      margin:10px 0 0;
+    .check-list{
+      margin:12px 0 0;
       padding:0;
       list-style:none;
       display:grid;
       gap:10px;
-      color:var(--muted);
     }
-    .list li{
+    .check-list li{
       display:flex;
       gap:10px;
       align-items:flex-start;
       padding:10px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.03);
+      color:var(--muted);
+      line-height:1.7;
     }
     .check{
       width:20px;
       height:20px;
       border-radius:8px;
       background:linear-gradient(135deg, var(--blue), var(--blue2));
+      color:#fff;
       display:grid;
       place-items:center;
+      font-size:12px;
+      font-weight:900;
       flex:0 0 auto;
-      margin-top:1px;
-      color:#fff;
-      font-weight:1000;
-      font-size:13px;
-      line-height:1;
+      margin-top:2px;
     }
 
-    /* Clients */
+    /* CLIENTS */
     .clients{
       display:grid;
-      grid-template-columns:repeat(5, 1fr);
-      gap:12px;
-      align-items:center;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
     }
     .client{
-      border-radius:16px;
-      padding:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
       display:grid;
       place-items:center;
-      min-height:74px;
-      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+      min-height:90px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      transition:.22s ease;
     }
     .client:hover{
-      transform:translateY(-6px);
-      box-shadow:0 12px 30px rgba(0,0,0,.22);
+      transform:translateY(-4px);
       background:rgba(255,255,255,.06);
+      box-shadow:0 14px 34px rgba(0,0,0,.18);
     }
     .client img{
-      max-width:120px;
-      max-height:44px;
+      max-width:130px;
+      max-height:48px;
       width:100%;
       height:auto;
       object-fit:contain;
-      filter:grayscale(1) brightness(1.2);
-      opacity:.92;
-      transition:filter .2s ease, opacity .2s ease, transform .2s ease;
+      filter:grayscale(1) brightness(1.14);
+      transition:.22s ease;
     }
     .client:hover img{
       filter:none;
-      opacity:1;
-      transform:translateY(-1px);
+      transform:scale(1.02);
     }
 
-    /* Carousel */
-    .carousel{padding:16px}
+    /* GALLERY */
+    .carousel{
+      padding:18px;
+    }
     .carousel-frame{
       position:relative;
-      border-radius:18px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
+      height:460px;
+      border-radius:20px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.04);
-      height:420px;
     }
     .carousel-frame img{
       width:100%;
       height:100%;
       object-fit:cover;
-      display:block;
-      transition:opacity .45s ease, transform .45s ease;
+      transition:opacity .4s ease, transform .4s ease;
     }
-    .carousel-frame:hover img{
-      transform:scale(1.02);
-    }
+    .carousel-frame:hover img{transform:scale(1.02)}
     .carousel-cap{
       position:absolute;
-      inset:auto 12px 12px 12px;
-      padding:10px 12px;
+      right:14px;
+      left:14px;
+      bottom:14px;
+      padding:12px 14px;
       border-radius:14px;
-      background:rgba(5,8,22,.70);
+      background:rgba(5,8,22,.72);
       border:1px solid rgba(255,255,255,.10);
-      font-weight:1000;
-      color:rgba(234,240,255,.95);
+      color:#fff;
+      font-weight:900;
     }
     .carousel-controls{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      margin-top:12px;
+      margin-top:14px;
     }
     .cbtn{
-      width:44px;
-      height:44px;
+      width:48px;
+      height:48px;
+      border:none;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
-      color:var(--txt);
+      color:#fff;
+      border:1px solid var(--line);
       font-size:22px;
-      font-weight:1000;
+      font-weight:900;
       cursor:pointer;
     }
     .dots{
       display:flex;
       gap:8px;
-      flex-wrap:wrap;
-      justify-content:center;
       flex:1;
+      justify-content:center;
+      flex-wrap:wrap;
     }
     .dot{
       width:10px;
       height:10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.20);
-      background:rgba(255,255,255,.10);
+      border:none;
+      background:rgba(255,255,255,.18);
       cursor:pointer;
     }
     .dot.active{
-      background:linear-gradient(135deg, var(--blue), var(--blue2));
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
       transform:scale(1.15);
     }
 
-    /* Contact */
-    .contact{
+    /* PROJECTS */
+    .project-image{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:14px;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .project-client{
+      margin-top:10px;
+      color:#d8e4ff;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    /* CONTACT */
+    .contact-grid{
       display:grid;
-      gap:14px;
       grid-template-columns:1fr 1fr;
+      gap:16px;
     }
     .field{
-      display:grid;
-      gap:8px;
-      padding:14px;
+      padding:16px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       background:rgba(255,255,255,.04);
     }
-    .field small{color:var(--muted);font-weight:1000}
-    .field strong{font-size:15px}
+    .field small{
+      display:block;
+      color:var(--muted);
+      font-weight:900;
+      margin-bottom:8px;
+    }
+    .field strong{
+      font-size:16px;
+      line-height:1.7;
+    }
     .field a{word-break:break-word}
 
+    .contact-actions,
     .map-actions{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:14px;
+      margin-top:16px;
     }
 
+    /* FOOTER */
     footer{
       padding:28px 0 36px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -515,13 +560,13 @@
       flex-wrap:wrap;
     }
 
-    /* Floating buttons */
+    /* FLOATING */
     .floating-wa{
       position:fixed;
       left:18px;
       bottom:18px;
-      z-index:1200;
-      background:linear-gradient(135deg, #25d366, #1ebe5d);
+      z-index:1300;
+      background:linear-gradient(135deg,#25d366,#1fb85a);
       color:#fff;
       text-decoration:none;
       font-weight:900;
@@ -534,12 +579,12 @@
       position:fixed;
       right:18px;
       bottom:18px;
-      z-index:1200;
+      z-index:1300;
       width:48px;
       height:48px;
       border:none;
       border-radius:999px;
-      background:linear-gradient(135deg, var(--blue), var(--blue2));
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
       color:#fff;
       font-size:22px;
       font-weight:900;
@@ -549,19 +594,30 @@
     }
     .back-to-top.show{display:block}
 
+    /* ANIMATIONS */
     @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(24px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      from{opacity:0;transform:translateY(24px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .hero-badge{animation:fadeUp .7s ease both}
+    .hero h1{animation:fadeUp .95s ease both}
+    .hero p{animation:fadeUp 1.18s ease both}
+    .hero-logo{animation:fadeUp 1.35s ease both}
+    .hero-actions{animation:fadeUp 1.55s ease both}
+    .hero-strip{animation:fadeUp 1.75s ease both}
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px){
+      .hero h1{font-size:56px}
+      .hero p{font-size:21px}
+      .clients{grid-template-columns:repeat(4,1fr)}
+      .hero-strip{grid-template-columns:repeat(2,1fr)}
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
+    @media (max-width: 920px){
+      .nav-inner{
+        grid-template-columns:auto 1fr auto;
+      }
       .links{display:none}
       .menu-toggle{
         display:inline-flex;
@@ -570,46 +626,60 @@
       }
       .grid3{grid-template-columns:1fr}
       .split{grid-template-columns:1fr}
-      .clients{grid-template-columns:repeat(3, 1fr)}
-      .contact{grid-template-columns:1fr}
-      .carousel-frame{height:280px}
-      .hero h1{font-size:42px}
-      .hero .sub{font-size:19px}
+      .clients{grid-template-columns:repeat(3,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+      .carousel-frame{height:320px}
+      .hero h1{font-size:44px}
+      .hero p{font-size:18px}
       .brand{min-width:auto}
-      .brand .name b{font-size:14px}
-      .brand .name span{font-size:11px}
+      .brand-text b{font-size:14px}
+      .brand-text span{font-size:11px}
     }
 
     @media (max-width: 640px){
       .nav-inner{
-        min-height:72px;
+        min-height:76px;
         padding:10px 0;
-        flex-wrap:wrap;
+        grid-template-columns:1fr auto auto;
+        gap:10px;
       }
       .brand{
-        max-width:100%;
         min-width:auto;
+        max-width:100%;
       }
-      .cta{
+      .brand-logo{
+        width:52px;
+        height:52px;
+      }
+      .nav-cta{
         width:100%;
+        grid-column:1 / -1;
         justify-content:flex-start;
+        flex-wrap:wrap;
       }
       .hero{
-        padding:56px 0 34px;
+        min-height:auto;
+        padding:48px 0 34px;
       }
       .hero h1{
         font-size:34px;
-        line-height:1.18;
+        line-height:1.16;
       }
-      .hero .sub{
+      .hero p{
         font-size:17px;
-        line-height:1.7;
+        line-height:1.75;
       }
-      .hero-logo-big img{
+      .hero-logo{
         width:96px;
         height:96px;
+        border-radius:20px;
       }
-      .clients{grid-template-columns:repeat(2, 1fr)}
+      .hero-strip{
+        grid-template-columns:1fr;
+      }
+      .clients{
+        grid-template-columns:repeat(2,1fr);
+      }
       .floating-wa{
         left:12px;
         bottom:12px;
@@ -622,6 +692,18 @@
         width:44px;
         height:44px;
       }
+      .section{
+        padding:58px 0;
+      }
+      .section h2{
+        font-size:28px;
+      }
+      .lead{
+        font-size:16px;
+      }
+      .project-image{
+        height:200px;
+      }
     }
   </style>
 </head>
@@ -633,61 +715,82 @@
 
   <button class="back-to-top" id="backToTop" type="button" aria-label="חזרה למעלה">↑</button>
 
-  <div class="nav">
+  <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="חזרה לראש העמוד">
-        <div class="logo">
+        <div class="brand-logo">
           <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
         </div>
-        <div class="name">
+        <div class="brand-text">
           <b>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</b>
           <span>סיבים אופטיים • תקשורת • ניהול פרויקטים • מצלמות</span>
         </div>
       </a>
 
-      <div class="links" aria-label="ניווט">
+      <nav class="links" aria-label="ניווט">
         <a href="#services">שירותים</a>
         <a href="#why">למה אנחנו</a>
         <a href="#clients">לקוחות</a>
         <a href="#gallery">גלריה</a>
+        <a href="#projects">פרויקטים</a>
         <a href="#contact">יצירת קשר</a>
-      </div>
+      </nav>
 
       <button class="menu-toggle" id="menuToggle" aria-label="פתח תפריט" type="button">☰</button>
 
-      <div class="cta">
-        <a class="btn" href="tel:+972545467122">טלפון</a>
-        <a class="btn btn-primary" href="https://wa.me/972545467122" target="_blank" rel="noopener">וואטסאפ</a>
+      <div class="nav-cta">
+        <a class="btn btn-dark" href="tel:+972545467122">טלפון</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/972545467122" target="_blank" rel="noopener">וואטסאפ</a>
       </div>
     </div>
-  </div>
+  </header>
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services">שירותים</a>
     <a href="#why">למה אנחנו</a>
     <a href="#clients">לקוחות</a>
     <a href="#gallery">גלריה</a>
+    <a href="#projects">פרויקטים</a>
     <a href="#contact">יצירת קשר</a>
   </div>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <h1>תשתיות חכמות לתקשורת מודרנית בכל הארץ.</h1>
+      <div class="container hero-inner">
+        <div class="hero-badge">סיבים אופטיים • תשתיות • תקשורת • מצלמות • ניהול פרויקטים</div>
 
-          <p class="sub">
-            <b>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
-            כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת עם סדר, תיעוד ועמידה בלו״ז.
-          </p>
+        <h1>תשתיות חכמות לתקשורת מודרנית בכל הארץ.</h1>
 
-          <div class="hero-logo-big">
-            <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
+        <p>
+          <b>שץ איי.אי.איי תשתיות ופרוייקטים בע"מ</b> מתמחה בתכנון וביצוע עבודות סיבים אופטיים ותשתיות תקשורת,
+          כולל השחלות, ריתוכים, הקמת אתרי תקשורת, מצלמות ואחזקה שוטפת — עם סדר, תיעוד ועמידה בלו״ז.
+        </p>
+
+        <div class="hero-logo">
+          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי">
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">לקבלת הצעת מחיר</a>
+          <a class="btn btn-dark" href="#services">לשירותים</a>
+        </div>
+
+        <div class="hero-strip">
+          <div class="hero-stat">
+            <strong>24/7</strong>
+            <span>זמינות מלאה</span>
           </div>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">לקבלת הצעת מחיר</a>
-            <a class="btn" href="#services">לשירותים</a>
+          <div class="hero-stat">
+            <strong>Fiber</strong>
+            <span>השחלות וריתוכים</span>
+          </div>
+          <div class="hero-stat">
+            <strong>PM</strong>
+            <span>ניהול ותיאום פרויקטים</span>
+          </div>
+          <div class="hero-stat">
+            <strong>All Israel</strong>
+            <span>עבודה בכל הארץ</span>
           </div>
         </div>
       </div>
@@ -696,62 +799,67 @@
     <section id="services" class="section">
       <div class="container">
         <h2>שירותים</h2>
-        <p class="lead">מעטפת מלאה לפרויקטי סיבים/תקשורת משלב התכנון ועד האחזקה.</p>
+        <p class="lead">מעטפת מלאה לפרויקטי סיבים ותקשורת — משלב התכנון ועד האחזקה.</p>
 
         <div class="grid3">
-          <div class="card">
-            <div class="top"><div class="pill">🧭</div><h3>תכנון פרויקטים</h3></div>
-            <p>אפיון, תכנון מסלולים ונקודות, הכנת תוכנית עבודה ותיאום גורמים.</p>
-          </div>
-          <div class="card">
-            <div class="top"><div class="pill">🧵</div><h3>השחלות</h3></div>
-            <p>השחלות בתוואי קיים/חדש, סידור וניהול תשתית בשטח, עבודה נקייה ומבוקרת.</p>
-          </div>
-          <div class="card">
-            <div class="top"><div class="pill">🔥</div><h3>ריתוכים</h3></div>
-            <p>ריתוכי סיבים, בדיקות ואיתור תקלות, גימור ותיעוד בהתאם לפרויקט.</p>
-          </div>
-          <div class="card">
-            <div class="top"><div class="pill">📡</div><h3>הקמת אתרי תקשורת</h3></div>
-            <p>הקמת אתרי תקשורת, ארונות, נקודות קצה, הכנה למסירה מסודרת.</p>
-          </div>
-          <div class="card">
-            <div class="top"><div class="pill">📷</div><h3>מצלמות (CCTV)</h3></div>
-            <p>תשתיות למצלמות, נקודות/כבלים, תיאום התקנות והכנה לתפעול.</p>
-          </div>
-          <div class="card">
-            <div class="top"><div class="pill">🛠️</div><h3>אחזקה תשתיות</h3></div>
-            <p>טיפול ותיקון תקלות, שיפור תשתית קיימת, שירות שוטף לפי צורך.</p>
-          </div>
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">🧭</div><h3>תכנון פרויקטים</h3></div>
+            <p>אפיון, תכנון מסלולים ונקודות, הכנת תוכנית עבודה ותיאום מול הגורמים הרלוונטיים.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">🧵</div><h3>השחלות</h3></div>
+            <p>השחלות בתוואי קיים או חדש, סידור תשתיות בשטח, עבודה נקייה ומבוקרת.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">🔥</div><h3>ריתוכים</h3></div>
+            <p>ריתוכי סיבים, איתור תקלות, בדיקות תקינות, גימור ותיעוד לפי צורכי הפרויקט.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">📡</div><h3>הקמת אתרי תקשורת</h3></div>
+            <p>הקמת אתרי תקשורת, ארונות, נקודות קצה והכנה למסירה מסודרת.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">📷</div><h3>מצלמות (CCTV)</h3></div>
+            <p>תשתיות למצלמות, הכנה לנקודות, כבלים, תיאום התקנות והכנה לתפעול תקין.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">🛠️</div><h3>אחזקה תשתיות</h3></div>
+            <p>טיפול בתקלות, שדרוג תשתיות קיימות, תחזוקה שוטפת ומענה מהיר בשטח.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="why" class="section">
       <div class="container">
-        <h2>למה לעבוד איתנו</h2>
-        <p class="lead">אנחנו עובדים בסטנדרט עבודה גבוה, מחזיקים את כל הציוד הנדרש כולל ניידות סיבים, ופועלים בסדר, תיאום ותיעוד שמקלים על התחזוקה.</p>
+        <h2>למה לבחור בנו</h2>
+        <p class="lead">סטנדרט עבודה גבוה, ציוד מקצועי, ניהול נכון ויכולת ביצוע מדויקת — משלב התכנון ועד המסירה.</p>
 
         <div class="split">
-          <div class="card">
-            <div class="top"><div class="pill">✅</div><h3>איכות, סדר ותיעוד</h3></div>
-            <ul class="list">
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">✅</div><h3>איכות, סדר ותיעוד</h3></div>
+            <ul class="check-list">
               <li><span class="check">✓</span><span>תיוג וסטנדרט התקנה עקבי.</span></li>
               <li><span class="check">✓</span><span>בדיקות איכות לפני מסירה ותיקונים בשטח.</span></li>
               <li><span class="check">✓</span><span>מסירה מסודרת שמאפשרת תחזוקה קלה.</span></li>
               <li><span class="check">✓</span><span>ציוד מקצועי וצוותים מנוסים.</span></li>
             </ul>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="top"><div class="pill">📅</div><h3>ניהול פרויקט ותיאום</h3></div>
-            <ul class="list">
+          <article class="card">
+            <div class="card-top"><div class="icon-pill">📅</div><h3>ניהול פרויקט ותיאום</h3></div>
+            <ul class="check-list">
               <li><span class="check">✓</span><span>עמידה בלו״ז ודיווח ברור.</span></li>
-              <li><span class="check">✓</span><span>תיאום עם ספקים/קבלנים/פיקוח.</span></li>
+              <li><span class="check">✓</span><span>תיאום עם ספקים, קבלנים ופיקוח.</span></li>
               <li><span class="check">✓</span><span>פתרון בעיות בזמן אמת.</span></li>
               <li><span class="check">✓</span><span>זמינות 24/7.</span></li>
             </ul>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -759,7 +867,7 @@
     <section id="clients" class="section">
       <div class="container">
         <h2>לקוחות</h2>
-        <p class="lead">בין החברות והארגונים איתם עבדנו/עובדים.</p>
+        <p class="lead">בין החברות והארגונים איתם עבדנו ועובדים.</p>
 
         <div class="clients">
           <div class="client"><img src="images/clients/bezeq.png" alt="בזק"></div>
@@ -779,12 +887,12 @@
     <section id="gallery" class="section">
       <div class="container">
         <h2>גלריית עבודות</h2>
-        <p class="lead">חלק מהעבודה שלנו בתמונות.</p>
+        <p class="lead">חלק מהעבודה שלנו בשטח.</p>
 
         <div class="carousel card">
           <div class="carousel-frame">
             <img id="carouselImg" src="images/gallery/01.jpg" alt="גלריית עבודות">
-            <div id="carouselCap" class="carousel-cap">עבודות מהשטח</div>
+            <div id="carouselCap" class="carousel-cap">תכנון</div>
           </div>
 
           <div class="carousel-controls">
@@ -796,17 +904,47 @@
       </div>
     </section>
 
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>פרויקטים נבחרים</h2>
+        <p class="lead">חלק מהפרויקטים בהם ביצענו עבודות תשתית, סיבים ותקשורת.</p>
+
+        <div class="grid3">
+          <article class="card">
+            <img class="project-image" src="images/projects/project1.jpg" alt="נתיבים מהירים">
+            <div class="card-top"><div class="icon-pill">🚧</div><h3>נתיבים מהירים</h3></div>
+            <p>תכנון וביצוע תשתיות סיבים אופטיים כולל השחלות, ריתוכים, התקנת מצלמות וגשרים, סידור ארונות תקשורת ובדיקות מערכת.</p>
+            <div class="project-client">לקוח: דניה סיבוס</div>
+          </article>
+
+          <article class="card">
+            <img class="project-image" src="images/projects/project2.jpg" alt="נתיבים מתחלפים">
+            <div class="card-top"><div class="icon-pill">🚧</div><h3>נתיבים מתחלפים</h3></div>
+            <p>תכנון והקמת תשתיות תקשורת מתקדמות כולל השחלות סיבים, ריתוכים, חיבור מצלמות וגשרים, סידור ארונות תקשורת וביצוע בדיקות.</p>
+            <div class="project-client">לקוח: סולל ובונה</div>
+          </article>
+
+          <article class="card">
+            <img class="project-image" src="images/projects/project3.jpg" alt="חיבור קיבוצים ומושבים">
+            <div class="card-top"><div class="icon-pill">🌐</div><h3>חיבור קיבוצים ומושבים</h3></div>
+            <p>פריסת תשתיות סיבים אופטיים ליישובים כולל השחלות, ריתוכים, הפעלות והתקנות בבתי הלקוחות.</p>
+            <div class="project-client">לקוח: מש</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="section">
       <div class="container">
         <h2>יצירת קשר</h2>
-        <p class="lead">רוצים הצעת מחיר או שיחה קצרה? דברו איתנו ונחזור אליכם מהר.</p>
+        <p class="lead">רוצים הצעת מחיר, שיחת היכרות או ניווט למשרד? הנה כל הדרכים להגיע אלינו.</p>
 
-        <div class="contact">
+        <div class="contact-grid">
           <div class="field">
             <small>טלפון / וואטסאפ</small>
             <strong>
-              <a href="tel:+972545467122">054-546-7122</a> •
-              <a target="_blank" rel="noopener" href="https://wa.me/972545467122">שלחו הודעה</a>
+              <a href="tel:+972545467122">054-546-7122</a><br>
+              <a target="_blank" rel="noopener" href="https://wa.me/972545467122">שלחו הודעה בוואטסאפ</a>
             </strong>
           </div>
 
@@ -816,8 +954,8 @@
           </div>
 
           <div class="field">
-            <small>אזור פעילות</small>
-            <strong>כל הארץ</strong>
+            <small>כתובת</small>
+            <strong>שלמה המלך 3, חדרה</strong>
           </div>
 
           <div class="field">
@@ -826,14 +964,14 @@
           </div>
         </div>
 
-        <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap">
+        <div class="contact-actions">
           <a class="btn btn-primary" href="https://wa.me/972545467122" target="_blank" rel="noopener">שלחו הודעה עכשיו</a>
-          <a class="btn" href="tel:+972545467122">שיחה מהירה</a>
+          <a class="btn btn-dark" href="tel:+972545467122">שיחה מהירה</a>
         </div>
 
         <div class="map-actions">
-          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94">Google Maps</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes">Waze</a>
+          <a class="btn btn-dark" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94">Google Maps</a>
+          <a class="btn btn-dark" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes">Waze</a>
         </div>
       </div>
     </section>
@@ -841,7 +979,7 @@
     <footer>
       <div class="container foot">
         <div style="display:flex;align-items:center;gap:10px">
-          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי" style="width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.12)">
+          <img src="images/logo.png" alt="לוגו שץ איי.אי.איי" style="width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#fff;padding:3px">
           <div>© <span id="y"></span> שץ איי.אי.איי תשתיות ופרוייקטים בע"מ • כל הזכויות שמורות</div>
         </div>
 
@@ -849,6 +987,7 @@
           <a href="#services" style="text-decoration:none;color:var(--muted)">שירותים</a>
           <a href="#clients" style="text-decoration:none;color:var(--muted)">לקוחות</a>
           <a href="#gallery" style="text-decoration:none;color:var(--muted)">גלריה</a>
+          <a href="#projects" style="text-decoration:none;color:var(--muted)">פרויקטים</a>
           <a href="#contact" style="text-decoration:none;color:var(--muted)">יצירת קשר</a>
         </div>
       </div>
@@ -881,7 +1020,7 @@
     function renderDots() {
       if (!dotsEl) return;
       dotsEl.innerHTML = images.map((_, i) =>
-        `<button class="dot ${i===idx ? "active":""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
+        `<button class="dot ${i===idx ? "active" : ""}" data-i="${i}" aria-label="תמונה ${i+1}"></button>`
       ).join("");
 
       dotsEl.querySelectorAll(".dot").forEach(b => {
@@ -950,13 +1089,9 @@
     });
 
     const backToTop = document.getElementById("backToTop");
-
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) {
-        backToTop?.classList.add("show");
-      } else {
-        backToTop?.classList.remove("show");
-      }
+      if (window.scrollY > 400) backToTop?.classList.add("show");
+      else backToTop?.classList.remove("show");
     });
 
     backToTop?.addEventListener("click", () => {
