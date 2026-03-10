@@ -14,18 +14,21 @@
 
   <style>
     :root{
-      --bg:#061126;
-      --bg2:#081935;
+      --bg:#071225;
+      --bg2:#091932;
       --surface:rgba(255,255,255,.05);
       --surface-2:rgba(255,255,255,.08);
-      --line:rgba(255,255,255,.12);
+      --surface-3:rgba(255,255,255,.12);
+      --line:rgba(255,255,255,.10);
       --text:#eef4ff;
-      --muted:#b8c6ee;
+      --muted:#b9c8ef;
       --blue:#0a5bff;
       --blue2:#35b6ff;
       --green:#25d366;
+      --maps:#ffffff;
+      --maps-text:#101828;
       --shadow:0 18px 60px rgba(0,0,0,.35);
-      --radius:22px;
+      --radius:24px;
       --max:1180px;
     }
 
@@ -37,7 +40,7 @@
       color:var(--text);
       background:
         radial-gradient(900px 500px at 85% 5%, rgba(53,182,255,.16), transparent 60%),
-        radial-gradient(800px 450px at 15% 0%, rgba(10,91,255,.12), transparent 55%),
+        radial-gradient(800px 450px at 15% 0%, rgba(10,91,255,.10), transparent 55%),
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
@@ -45,12 +48,28 @@
     img{max-width:100%;display:block}
     .container{max-width:var(--max);margin:0 auto;padding:0 20px}
 
+    .section{padding:76px 0}
+    .section h2{
+      margin:0 0 12px;
+      font-size:34px;
+      line-height:1.12;
+      letter-spacing:-.3px;
+    }
+    .lead{
+      margin:0 0 24px;
+      max-width:920px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:18px;
+    }
+
+    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      padding:12px 18px;
+      padding:13px 18px;
       border-radius:16px;
       border:1px solid var(--line);
       background:var(--surface);
@@ -59,6 +78,8 @@
       font-weight:900;
       transition:.22s ease;
       cursor:pointer;
+      box-shadow:none;
+      min-height:48px;
     }
     .btn:hover{
       transform:translateY(-2px);
@@ -68,39 +89,44 @@
     .btn-primary{
       background:linear-gradient(135deg,var(--blue),var(--blue2));
       border-color:transparent;
-      box-shadow:0 14px 34px rgba(10,91,255,.28);
+      box-shadow:0 14px 34px rgba(10,91,255,.30);
     }
+    .btn-primary:hover{filter:brightness(1.04)}
     .btn-whatsapp{
       background:linear-gradient(135deg,#25d366,#1fb85a);
       border-color:transparent;
+      box-shadow:0 14px 34px rgba(37,211,102,.24);
     }
     .btn-dark{
-      background:rgba(0,0,0,.30);
-      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.14);
+    }
+    .btn-maps{
+      background:var(--maps);
+      color:var(--maps-text);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 12px 28px rgba(0,0,0,.14);
+    }
+    .btn-maps:hover{
+      background:#f3f6fb;
+    }
+    .btn-waze{
+      background:linear-gradient(135deg,#33c8ff,#1a9fff);
+      color:#fff;
+      border:none;
+      box-shadow:0 12px 28px rgba(26,159,255,.28);
+    }
+    .btn-waze:hover{
+      filter:brightness(1.05);
     }
 
-    .section{padding:72px 0}
-    .section h2{
-      margin:0 0 12px;
-      font-size:34px;
-      line-height:1.15;
-      letter-spacing:-.3px;
-    }
-    .lead{
-      margin:0 0 22px;
-      max-width:860px;
-      color:var(--muted);
-      line-height:1.9;
-      font-size:18px;
-    }
-
-    /* NAV */
+    /* Nav */
     .nav{
       position:sticky;
       top:0;
       z-index:1100;
       border-bottom:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(5,11,24,.94), rgba(5,11,24,.78));
+      background:linear-gradient(180deg, rgba(5,11,24,.94), rgba(5,11,24,.80));
       backdrop-filter:blur(12px);
     }
     .nav-inner{
@@ -194,21 +220,21 @@
     }
     .mobile-menu a:hover{background:rgba(255,255,255,.06)}
 
-    /* HERO */
+    /* Hero */
     .hero{
       position:relative;
       overflow:hidden;
       min-height:calc(100vh - 80px);
       display:flex;
       align-items:center;
-      padding:56px 0 44px;
+      padding:58px 0 44px;
     }
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
       background:url("images/hero-fiber.jpg") center center / cover no-repeat;
-      opacity:.92;
+      opacity:.90;
       pointer-events:none;
     }
     .hero::after{
@@ -216,7 +242,7 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(4,11,24,.42), rgba(4,11,24,.52)),
+        linear-gradient(180deg, rgba(4,11,24,.46), rgba(4,11,24,.58)),
         radial-gradient(900px 500px at 50% 25%, rgba(0,0,0,.08), transparent 60%);
       pointer-events:none;
     }
@@ -236,7 +262,7 @@
       padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
+      background:rgba(255,255,255,.08);
       font-size:14px;
       color:#dbe6ff;
       font-weight:800;
@@ -246,27 +272,27 @@
     .hero h1{
       margin:0 0 16px;
       max-width:1100px;
-      font-size:68px;
-      line-height:1.06;
+      font-size:70px;
+      line-height:1.05;
       letter-spacing:-1px;
-      text-shadow:0 8px 24px rgba(0,0,0,.28);
+      text-shadow:0 8px 24px rgba(0,0,0,.30);
     }
     .hero p{
       margin:0 auto 18px;
-      max-width:940px;
+      max-width:960px;
       font-size:24px;
       line-height:1.8;
-      color:rgba(255,255,255,.96);
+      color:rgba(255,255,255,.97);
       text-shadow:0 4px 18px rgba(0,0,0,.24);
     }
 
     .hero-logo{
-      width:124px;
-      height:124px;
-      margin:14px auto 18px;
-      border-radius:24px;
+      width:126px;
+      height:126px;
+      margin:16px auto 20px;
+      border-radius:26px;
       overflow:hidden;
-      background:rgba(255,255,255,.92);
+      background:rgba(255,255,255,.94);
       box-shadow:0 18px 40px rgba(0,0,0,.24);
       padding:10px;
     }
@@ -276,7 +302,7 @@
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:10px;
+      margin-top:12px;
     }
 
     .hero-strip{
@@ -288,8 +314,8 @@
     }
     .hero-stat{
       padding:18px 16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
       border-radius:18px;
       text-align:center;
       box-shadow:0 10px 24px rgba(0,0,0,.12);
@@ -306,9 +332,10 @@
       font-weight:700;
     }
 
-    /* CARDS */
+    /* Cards */
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
     .card{
       position:relative;
       overflow:hidden;
@@ -332,6 +359,7 @@
       pointer-events:none;
     }
     .card > *{position:relative}
+
     .card-top{
       display:flex;
       align-items:center;
@@ -392,7 +420,7 @@
       margin-top:2px;
     }
 
-    /* CLIENTS */
+    /* Clients */
     .clients{
       display:grid;
       grid-template-columns:repeat(5,1fr);
@@ -427,7 +455,7 @@
       transform:scale(1.02);
     }
 
-    /* GALLERY */
+    /* Gallery */
     .carousel{
       padding:18px;
     }
@@ -497,7 +525,7 @@
       transform:scale(1.15);
     }
 
-    /* PROJECTS */
+    /* Projects */
     .project-image{
       width:100%;
       height:220px;
@@ -513,7 +541,7 @@
       font-size:14px;
     }
 
-    /* CONTACT */
+    /* Contact */
     .contact-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -545,7 +573,34 @@
       margin-top:16px;
     }
 
-    /* FOOTER */
+    .action-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .action-card{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:64px;
+      border-radius:18px;
+      padding:12px;
+      text-decoration:none;
+      font-weight:900;
+      border:1px solid var(--line);
+      transition:.22s ease;
+    }
+    .action-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 30px rgba(0,0,0,.18);
+    }
+    .action-phone{background:rgba(255,255,255,.05)}
+    .action-wa{background:linear-gradient(135deg,#25d366,#1fb85a)}
+    .action-maps{background:#fff;color:#111827}
+    .action-waze{background:linear-gradient(135deg,#33c8ff,#1a9fff)}
+
+    /* Footer */
     footer{
       padding:28px 0 36px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -560,7 +615,7 @@
       flex-wrap:wrap;
     }
 
-    /* FLOATING */
+    /* Floating */
     .floating-wa{
       position:fixed;
       left:18px;
@@ -594,7 +649,7 @@
     }
     .back-to-top.show{display:block}
 
-    /* ANIMATIONS */
+    /* Animations */
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(24px)}
       to{opacity:1;transform:translateY(0)}
@@ -606,7 +661,7 @@
     .hero-actions{animation:fadeUp 1.55s ease both}
     .hero-strip{animation:fadeUp 1.75s ease both}
 
-    /* RESPONSIVE */
+    /* Responsive */
     @media (max-width: 1100px){
       .hero h1{font-size:56px}
       .hero p{font-size:21px}
@@ -628,6 +683,7 @@
       .split{grid-template-columns:1fr}
       .clients{grid-template-columns:repeat(3,1fr)}
       .contact-grid{grid-template-columns:1fr}
+      .action-grid{grid-template-columns:1fr 1fr}
       .carousel-frame{height:320px}
       .hero h1{font-size:44px}
       .hero p{font-size:18px}
@@ -704,6 +760,7 @@
       .project-image{
         height:200px;
       }
+      .action-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -964,14 +1021,11 @@
           </div>
         </div>
 
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="https://wa.me/972545467122" target="_blank" rel="noopener">שלחו הודעה עכשיו</a>
-          <a class="btn btn-dark" href="tel:+972545467122">שיחה מהירה</a>
-        </div>
-
-        <div class="map-actions">
-          <a class="btn btn-dark" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94">Google Maps</a>
-          <a class="btn btn-dark" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes">Waze</a>
+        <div class="action-grid">
+          <a class="action-card action-phone" href="tel:+972545467122">📞 התקשרו עכשיו</a>
+          <a class="action-card action-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener">💬 וואטסאפ</a>
+          <a class="action-card action-maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D7%A9%D7%9C%D7%9E%D7%94+%D7%94%D7%9E%D7%9C%D7%9A+3+%D7%97%D7%93%D7%A8%D7%94">📍 Google Maps</a>
+          <a class="action-card action-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%94%D7%9E%D7%9C%D7%9A%203%20%D7%97%D7%93%D7%A8%D7%94&navigate=yes">🚗 Waze</a>
         </div>
       </div>
     </section>
