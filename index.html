@@ -234,7 +234,7 @@
 
 .links a{
   text-decoration:none;
-  color:#374151;
+  color:#111;
   font-size:14px;
   font-weight:800;
   padding:10px 12px;
@@ -540,16 +540,20 @@
       grid-template-columns:repeat(5,1fr);
       gap:14px;
     }
-    .client{
-      display:grid;
-      place-items:center;
-      min-height:90px;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:18px;
-      background:rgba(255,255,255,.04);
-      transition:.22s ease;
-    }
+ .client{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffffff;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.client img{
+  max-width:120px;
+  filter:none;
+}
     .client:hover{
       transform:translateY(-4px);
       background:rgba(255,255,255,.06);
