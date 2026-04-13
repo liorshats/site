@@ -535,41 +535,106 @@
       margin-top:2px;
     }
 
-    .clients{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:14px;
-    }
- .client{
+ .clients{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+  align-items:stretch;
+}
+
+.client{
   display:flex;
   align-items:center;
   justify-content:center;
+  min-height:120px;
+  padding:18px;
+  border-radius:22px;
   background:#ffffff;
-  padding:20px;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgba(15,23,42,.08);
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.06),
+    0 2px 8px rgba(15,23,42,.04);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
 }
 
-.client img{
-  max-width:120px;
-  filter:none;
+.client:hover{
+  transform:translateY(-4px);
+  border-color:rgba(10,91,255,.18);
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.10),
+    0 6px 16px rgba(15,23,42,.06);
 }
-    .client:hover{
-      transform:translateY(-4px);
-      background:rgba(255,255,255,.06);
-      box-shadow:0 14px 34px rgba(0,0,0,.18);
-    }
-   .client img{
-  max-width:130px;
-  max-height:48px;
-  width:100%;
+
+.client-logo{
+  width:160px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.client-logo img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
   height:auto;
   object-fit:contain;
-
-  filter:none;      
+  display:block;
+  filter:none;
   opacity:1;
 }
-    
+   .logo-bezeq img{
+  max-width:58px;
+  max-height:58px;
+}
+
+.logo-cellcom img{
+  max-width:90px;
+  max-height:34px;
+}
+
+.logo-unlimited img{
+  max-width:95px;
+  max-height:34px;
+}
+
+.logo-hot img{
+  max-width:72px;
+  max-height:48px;
+}
+
+.logo-partner img{
+  max-width:110px;
+  max-height:40px;
+}
+
+.logo-future img{
+  max-width:78px;
+  max-height:44px;
+}
+
+.logo-mes img{
+  max-width:108px;
+  max-height:38px;
+}
+
+.logo-soll img{
+  max-width:132px;
+  max-height:44px;
+}
+
+.logo-dnia img{
+  max-width:92px;
+  max-height:34px;
+}
+
+.logo-electra img{
+  max-width:122px;
+  max-height:42px;
+}
  
 
     .carousel{
@@ -792,7 +857,10 @@
       }
       .grid3{grid-template-columns:1fr}
       .split{grid-template-columns:1fr}
-      .clients{grid-template-columns:repeat(3,1fr)}
+      .clients{
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
       .contact-grid{grid-template-columns:1fr}
       .action-grid{grid-template-columns:1fr 1fr}
       .carousel-frame{height:320px}
@@ -824,7 +892,21 @@
       .hero p{font-size:17px;line-height:1.75}
       .hero-logo{width:96px;height:96px;border-radius:20px}
       .hero-strip{grid-template-columns:1fr}
-      .clients{grid-template-columns:repeat(2,1fr)}
+      .clients{
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.client{
+  min-height:96px;
+  padding:14px;
+  border-radius:18px;
+}
+
+.client-logo{
+  width:120px;
+  height:42px;
+}
       .floating-wa{
         left:12px;
         bottom:12px;
@@ -1023,19 +1105,67 @@
         <h2 id="clients-title">לקוחות</h2>
         <p class="lead">בין החברות והארגונים איתם עבדנו ועובדים.</p>
 
-        <div class="clients">
-          <div class="client"><img src="images/clients/bezeq.png" alt="לוגו בזק"></div>
-          <div class="client"><img src="images/clients/cellcom.png" alt="לוגו סלקום"></div>
-          <div class="client"><img src="images/clients/unlimited.png" alt="לוגו Unlimited"></div>
-          <div class="client"><img src="images/clients/hot.png" alt="לוגו HOT"></div>
-          <div class="client"><img src="images/clients/partner.png" alt="לוגו פרטנר"></div>
-          <div class="client"><img src="images/clients/future.png" alt="לוגו Future"></div>
-          <div class="client"><img src="images/clients/mes.png" alt="לוגו MES"></div>
-          <div class="client"><img src="images/clients/soll.png" alt="לוגו סולל ובונה"></div>
-          <div class="client"><img src="images/clients/dnia.png" alt="לוגו דניה סיבוס"></div>
-          <div class="client"><img src="images/clients/elctra.png" alt="לוגו אלקטרה"></div>
-        </div>
-      </div>
+<div class="clients">
+  <div class="client">
+    <div class="client-logo logo-bezeq">
+      <img src="images/clients/bezeq.png" alt="לוגו בזק">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-cellcom">
+      <img src="images/clients/cellcom.png" alt="לוגו סלקום">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-unlimited">
+      <img src="images/clients/unlimited.png" alt="לוגו Unlimited">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-hot">
+      <img src="images/clients/hot.png" alt="לוגו HOT">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-partner">
+      <img src="images/clients/partner.png" alt="לוגו פרטנר">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-future">
+      <img src="images/clients/future.png" alt="לוגו Future">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-mes">
+      <img src="images/clients/mes.png" alt="לוגו MES">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-soll">
+      <img src="images/clients/soll.png" alt="לוגו סולל ובונה">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-dnia">
+      <img src="images/clients/dnia.png" alt="לוגו דניה סיבוס">
+    </div>
+  </div>
+
+  <div class="client">
+    <div class="client-logo logo-electra">
+      <img src="images/clients/elctra.png" alt="לוגו אלקטרה">
+    </div>
+  </div>
+</div>
     </section>
 
     <section id="gallery" class="section" aria-labelledby="gallery-title">
