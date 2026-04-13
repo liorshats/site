@@ -13,6 +13,35 @@
   <meta name="theme-color" content="#0a5bff" />
 
   <style>
+    /* כפתור נגישות צף */
+.floating-access{
+  position:fixed;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:1300;
+
+  width:56px;
+  height:56px;
+  border-radius:50%;
+
+  background:linear-gradient(135deg,#0a5bff,#35b6ff);
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  transition:all .25s ease;
+}
+
+.floating-access:hover{
+  transform:translateY(-50%) scale(1.08);
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
     :root{
       --bg:#071225;
       --bg2:#091932;
@@ -279,6 +308,13 @@
 }
 
 /* מובייל */
+    @media (max-width:640px){
+  .floating-access{
+    right:12px;
+    width:48px;
+    height:48px;
+  }
+}
 @media (max-width: 920px){
   .nav-inner{
     grid-template-columns:auto 1fr auto;
@@ -918,7 +954,11 @@
         <a href="#gallery">גלריה</a>
         <a href="#projects">פרויקטים</a>
         <a href="#contact">יצירת קשר</a>
-        <a href="#accessibility">נגישות</a>
+       <a href="#accessibility" aria-label="נגישות" class="access-icon">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+    <path d="M12 2a2 2 0 110 4 2 2 0 010-4zm0 5c-2.21 0-4 1.79-4 4v2h2v7h2v-7h2v7h2v-7h2v-2c0-2.21-1.79-4-4-4h-2z"/>
+  </svg>
+</a>
       </nav>
 
       <button
