@@ -1100,19 +1100,207 @@ body.access-stop-motion *::after{
       .project-image{height:200px}
       .action-grid{grid-template-columns:1fr}
     }
+    /* ===== תפריט נגישות חדש ===== */
+
+.floating-access{
+  position:fixed;
+  right:18px;
+  bottom:90px;
+  z-index:1400;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  box-shadow:0 16px 38px rgba(10,91,255,.28);
+  border:1px solid rgba(255,255,255,.16);
+  transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+
+.floating-access:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 20px 46px rgba(10,91,255,.34);
+  filter:brightness(1.03);
+}
+
+.access-panel{
+  position:fixed;
+  right:88px;
+  bottom:90px;
+  z-index:1401;
+  width:320px;
+  max-width:calc(100vw - 32px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg, rgba(7,18,37,.96), rgba(9,25,50,.96));
+  backdrop-filter:blur(14px);
+  box-shadow:0 24px 64px rgba(0,0,0,.30);
+  overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(12px);
+  transition:opacity .22s ease, transform .22s ease;
+}
+
+.access-panel.open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+.access-panel-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 16px 12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.access-panel-title{
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+}
+
+.access-close{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  color:#fff;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.10);
+  font-size:24px;
+  line-height:1;
+}
+
+.access-panel-body{
+  padding:14px;
+  display:grid;
+  gap:10px;
+}
+
+.access-option{
+  width:100%;
+  min-height:48px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.access-option:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.10);
+  border-color:rgba(53,182,255,.24);
+}
+
+.access-option.reset{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border-color:transparent;
+  box-shadow:0 12px 28px rgba(10,91,255,.24);
+}
+
+/* מצבי נגישות */
+body.access-high-contrast{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+body.access-high-contrast .nav,
+body.access-high-contrast .card,
+body.access-high-contrast .client,
+body.access-high-contrast .field,
+body.access-high-contrast .accessibility-card,
+body.access-high-contrast .mobile-menu,
+body.access-high-contrast .hero-stat,
+body.access-high-contrast .access-panel{
+  background:#111 !important;
+  color:#fff !important;
+  border-color:#fff !important;
+  box-shadow:none !important;
+}
+
+body.access-high-contrast .brand-text b,
+body.access-high-contrast .brand-text span,
+body.access-high-contrast .links a,
+body.access-high-contrast .lead,
+body.access-high-contrast .card p,
+body.access-high-contrast .field strong,
+body.access-high-contrast .field small,
+body.access-high-contrast .check-list li,
+body.access-high-contrast .access-panel-title{
+  color:#fff !important;
+}
+
+body.access-high-contrast a{
+  color:#ffeb3b !important;
+}
+
+body.access-links-highlight a{
+  text-decoration:underline !important;
+  text-underline-offset:4px !important;
+  font-weight:900 !important;
+}
+
+body.access-stop-motion *,
+body.access-stop-motion *::before,
+body.access-stop-motion *::after{
+  animation:none !important;
+  transition:none !important;
+  scroll-behavior:auto !important;
+}
+
+@media (max-width:640px){
+  .floating-access{
+    right:12px;
+    bottom:78px;
+    width:50px;
+    height:50px;
+  }
+
+  .access-panel{
+    right:12px;
+    left:12px;
+    bottom:138px;
+    width:auto;
+    max-width:none;
+  }
+}
   </style>
 </head>
-  <!-- כפתור נגישות + תפריט -->
-<a href="#" class="floating-access" id="accessBtn">
-  ♿
+<body>
+  <a href="#" class="floating-access" id="accessBtn" aria-label="פתח תפריט נגישות">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+    <path d="M12 2a2 2 0 110 4 2 2 0 010-4zm0 5c-2.21 0-4 1.79-4 4v2h2v7h2v-7h2v7h2v-7h2v-2c0-2.21-1.79-4-4-4h-2z"/>
+  </svg>
 </a>
 
-<div class="access-panel" id="accessPanel">
-  <button onclick="toggleTextSize()">הגדלת טקסט</button>
-  <button onclick="toggleContrast()">ניגודיות גבוהה</button>
-  <button onclick="resetAccess()">איפוס</button>
+<div class="access-panel" id="accessPanel" aria-hidden="true">
+  <div class="access-panel-header">
+    <div class="access-panel-title">אפשרויות נגישות</div>
+    <button type="button" class="access-close" id="accessClose" aria-label="סגור תפריט נגישות">×</button>
+  </div>
+
+  <div class="access-panel-body">
+    <button type="button" class="access-option" data-action="increase-text">הגדלת טקסט</button>
+    <button type="button" class="access-option" data-action="decrease-text">הקטנת טקסט</button>
+    <button type="button" class="access-option" data-action="toggle-contrast">ניגודיות גבוהה</button>
+    <button type="button" class="access-option" data-action="toggle-links">הדגשת קישורים</button>
+    <button type="button" class="access-option" data-action="toggle-motion">עצירת אנימציות</button>
+    <button type="button" class="access-option reset" data-action="reset">איפוס הגדרות</button>
+  </div>
 </div>
-<body>
   <a class="skip-link" href="#mainContent">דלג לתוכן המרכזי</a>
 
   <a class="floating-wa" href="https://wa.me/972545467122" target="_blank" rel="noopener" aria-label="פתח שיחה בוואטסאפ">
@@ -1736,6 +1924,79 @@ accessActions.forEach(btn => {
 });
 
 loadAccessibilityState();
+    /* ===== תפריט נגישות ===== */
+const accessBtn = document.getElementById("accessBtn");
+const accessPanel = document.getElementById("accessPanel");
+const accessClose = document.getElementById("accessClose");
+const accessOptions = document.querySelectorAll(".access-option");
+
+let accessFontScale = 100;
+
+function openAccessPanel() {
+  accessPanel.classList.add("open");
+  accessPanel.setAttribute("aria-hidden", "false");
+}
+
+function closeAccessPanel() {
+  accessPanel.classList.remove("open");
+  accessPanel.setAttribute("aria-hidden", "true");
+}
+
+accessBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+  const isOpen = accessPanel.classList.contains("open");
+  if (isOpen) closeAccessPanel();
+  else openAccessPanel();
+});
+
+accessClose?.addEventListener("click", () => {
+  closeAccessPanel();
+});
+
+document.addEventListener("click", (e) => {
+  if (!accessPanel || !accessBtn) return;
+  if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
+    closeAccessPanel();
+  }
+});
+
+accessOptions.forEach((button) => {
+  button.addEventListener("click", () => {
+    const action = button.dataset.action;
+
+    if (action === "increase-text") {
+      accessFontScale = Math.min(accessFontScale + 10, 140);
+      document.documentElement.style.fontSize = accessFontScale + "%";
+    }
+
+    if (action === "decrease-text") {
+      accessFontScale = Math.max(accessFontScale - 10, 90);
+      document.documentElement.style.fontSize = accessFontScale + "%";
+    }
+
+    if (action === "toggle-contrast") {
+      document.body.classList.toggle("access-high-contrast");
+    }
+
+    if (action === "toggle-links") {
+      document.body.classList.toggle("access-links-highlight");
+    }
+
+    if (action === "toggle-motion") {
+      document.body.classList.toggle("access-stop-motion");
+    }
+
+    if (action === "reset") {
+      accessFontScale = 100;
+      document.documentElement.style.fontSize = "100%";
+      document.body.classList.remove(
+        "access-high-contrast",
+        "access-links-highlight",
+        "access-stop-motion"
+      );
+    }
+  });
+});
   </script>
 </body>
 </html>
