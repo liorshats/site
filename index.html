@@ -1451,432 +1451,271 @@ body.access-stop-motion *::after{
       </div>
     </footer>
   </main>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+  const images = [
+    { src: "images/gallery/01.jpg", cap: "תכנון", alt: "תמונה של עבודת תכנון תשתיות" },
+    { src: "images/gallery/02.jpg", cap: "תנאי שטח", alt: "תמונה מתנאי שטח בפרויקט תשתיות" },
+    { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב", alt: "צוות עבודה באתר תשתיות" },
+    { src: "images/gallery/04.jpg", cap: "ניידת סיבים", alt: "ניידת סיבים בשטח" },
+    { src: "images/gallery/05.jpg", cap: "מעבדה ניידת", alt: "מעבדה ניידת לעבודות סיבים" },
+    { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח", alt: "סידור מקצועי של ציוד ותשתיות" },
+    { src: "images/gallery/07.jpg", cap: "השחלות", alt: "ביצוע השחלות בתשתית" },
+    { src: "images/gallery/08.jpg", cap: "עבודת צוות", alt: "צוות עבודה בפרויקט" },
+    { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת", alt: "ארון תקשורת מסודר" },
+    { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום", alt: "עבודה בתנאי שטח משתנים" }
+  ];
 
-    const images = [
-      { src: "images/gallery/01.jpg", cap: "תכנון", alt: "תמונה של עבודת תכנון תשתיות" },
-      { src: "images/gallery/02.jpg", cap: "תנאי שטח", alt: "תמונה מתנאי שטח בפרויקט תשתיות" },
-      { src: "images/gallery/03.jpg", cap: "מוכנים לכל מצב", alt: "צוות עבודה באתר תשתיות" },
-      { src: "images/gallery/04.jpg", cap: "ניידת סיבים", alt: "ניידת סיבים בשטח" },
-      { src: "images/gallery/05.jpg", cap: "מעבדה ניידת", alt: "מעבדה ניידת לעבודות סיבים" },
-      { src: "images/gallery/06.jpg", cap: "כשמסודר הכל נוח", alt: "סידור מקצועי של ציוד ותשתיות" },
-      { src: "images/gallery/07.jpg", cap: "השחלות", alt: "ביצוע השחלות בתשתית" },
-      { src: "images/gallery/08.jpg", cap: "עבודת צוות", alt: "צוות עבודה בפרויקט" },
-      { src: "images/gallery/09.jpg", cap: "סידור ארונות תקשורת", alt: "ארון תקשורת מסודר" },
-      { src: "images/gallery/10.jpg", cap: "מסוגלות לעבוד בכל מקום", alt: "עבודה בתנאי שטח משתנים" }
+  let idx = 0;
+  let timer = null;
+  let autoPlay = true;
+
+  const imgEl = document.getElementById("carouselImg");
+  const capEl = document.getElementById("carouselCap");
+  const dotsEl = document.getElementById("dots");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const toggleAutoBtn = document.getElementById("toggleAutoBtn");
+
+  function renderDots() {
+    if (!dotsEl) return;
+
+    dotsEl.innerHTML = images.map((_, i) =>
+      `<button class="dot ${i === idx ? "active" : ""}" data-i="${i}" aria-label="מעבר לתמונה ${i + 1}" aria-pressed="${i === idx ? "true" : "false"}"></button>`
+    ).join("");
+
+    dotsEl.querySelectorAll(".dot").forEach((button) => {
+      button.addEventListener("click", () => {
+        idx = Number(button.dataset.i);
+        show();
+        if (autoPlay) restart();
+      });
+    });
+  }
+
+  function show() {
+    if (!imgEl || !capEl) return;
+
+    const item = images[idx];
+    imgEl.style.opacity = "0";
+
+    setTimeout(() => {
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      capEl.textContent = item.cap;
+      imgEl.style.opacity = "1";
+      renderDots();
+    }, 220);
+  }
+
+  function next() {
+    idx = (idx + 1) % images.length;
+    show();
+  }
+
+  function prev() {
+    idx = (idx - 1 + images.length) % images.length;
+    show();
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function restart() {
+    stopAuto();
+    if (autoPlay) {
+      timer = setInterval(next, 4000);
+    }
+  }
+
+  function updateToggleButton() {
+    if (!toggleAutoBtn) return;
+
+    const icon = toggleAutoBtn.querySelector("span");
+    if (icon) {
+      icon.textContent = autoPlay ? "⏸" : "▶";
+    }
+
+    toggleAutoBtn.setAttribute(
+      "aria-label",
+      autoPlay ? "השהה החלפה אוטומטית" : "הפעל החלפה אוטומטית"
+    );
+    toggleAutoBtn.setAttribute("aria-pressed", autoPlay ? "false" : "true");
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    prev();
+    if (autoPlay) restart();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    next();
+    if (autoPlay) restart();
+  });
+
+  toggleAutoBtn?.addEventListener("click", () => {
+    autoPlay = !autoPlay;
+    updateToggleButton();
+    if (autoPlay) restart();
+    else stopAuto();
+  });
+
+  if (imgEl && capEl && dotsEl) {
+    renderDots();
+    updateToggleButton();
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion) {
+      restart();
+    } else {
+      autoPlay = false;
+      updateToggleButton();
+    }
+  }
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const backToTop = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTop?.classList.add("show");
+    } else {
+      backToTop?.classList.remove("show");
+    }
+  });
+
+  backToTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* ===== תפריט נגישות ===== */
+  const accessBtn = document.getElementById("accessBtn");
+  const accessPanel = document.getElementById("accessPanel");
+  const accessClose = document.getElementById("accessClose");
+  const accessOptions = document.querySelectorAll(".access-option");
+
+  let currentFontSize = Number(localStorage.getItem("accessFontSize")) || 100;
+
+  function applyFontSize() {
+    document.documentElement.style.fontSize = currentFontSize + "%";
+    localStorage.setItem("accessFontSize", String(currentFontSize));
+  }
+
+  function setBodyClass(className, enabled) {
+    document.body.classList.toggle(className, enabled);
+    localStorage.setItem(className, enabled ? "1" : "0");
+  }
+
+  function loadAccessibilityState() {
+    applyFontSize();
+
+    const toggles = [
+      "access-high-contrast",
+      "access-links-highlight",
+      "access-stop-motion"
     ];
 
-    let idx = 0;
-    let timer = null;
-    let autoPlay = true;
+    toggles.forEach((cls) => {
+      const enabled = localStorage.getItem(cls) === "1";
+      document.body.classList.toggle(cls, enabled);
+    });
+  }
 
-    const imgEl = document.getElementById("carouselImg");
-    const capEl = document.getElementById("carouselCap");
-    const dotsEl = document.getElementById("dots");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const toggleAutoBtn = document.getElementById("toggleAutoBtn");
+  function openAccessPanel() {
+    if (!accessPanel) return;
+    accessPanel.classList.add("open");
+    accessPanel.setAttribute("aria-hidden", "false");
+  }
 
-    function renderDots() {
-      if (!dotsEl) return;
-      dotsEl.innerHTML = images.map((_, i) =>
-        `<button class="dot ${i===idx ? "active" : ""}" data-i="${i}" aria-label="מעבר לתמונה ${i+1}" aria-pressed="${i===idx ? "true" : "false"}"></button>`
-      ).join("");
+  function closeAccessPanel() {
+    if (!accessPanel) return;
+    accessPanel.classList.remove("open");
+    accessPanel.setAttribute("aria-hidden", "true");
+  }
 
-      dotsEl.querySelectorAll(".dot").forEach(b => {
-        b.addEventListener("click", () => {
-          idx = Number(b.dataset.i);
-          show();
-          if (autoPlay) restart();
+  accessBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    const isOpen = accessPanel?.classList.contains("open");
+    if (isOpen) closeAccessPanel();
+    else openAccessPanel();
+  });
+
+  accessClose?.addEventListener("click", () => {
+    closeAccessPanel();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!accessPanel || !accessBtn) return;
+
+    if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
+      closeAccessPanel();
+    }
+  });
+
+  accessOptions.forEach((button) => {
+    button.addEventListener("click", () => {
+      const action = button.dataset.action;
+
+      if (action === "increase-text") {
+        currentFontSize = Math.min(currentFontSize + 10, 140);
+        applyFontSize();
+      }
+
+      if (action === "decrease-text") {
+        currentFontSize = Math.max(currentFontSize - 10, 90);
+        applyFontSize();
+      }
+
+      if (action === "toggle-contrast") {
+        const next = !document.body.classList.contains("access-high-contrast");
+        setBodyClass("access-high-contrast", next);
+      }
+
+      if (action === "toggle-links") {
+        const next = !document.body.classList.contains("access-links-highlight");
+        setBodyClass("access-links-highlight", next);
+      }
+
+      if (action === "toggle-motion") {
+        const next = !document.body.classList.contains("access-stop-motion");
+        setBodyClass("access-stop-motion", next);
+      }
+
+      if (action === "reset") {
+        currentFontSize = 100;
+        applyFontSize();
+
+        [
+          "access-high-contrast",
+          "access-links-highlight",
+          "access-stop-motion"
+        ].forEach((cls) => {
+          document.body.classList.remove(cls);
+          localStorage.removeItem(cls);
         });
-      });
-    }
-
-    function show() {
-      if (!imgEl || !capEl) return;
-      const item = images[idx];
-      imgEl.style.opacity = "0";
-      setTimeout(() => {
-        imgEl.src = item.src;
-        imgEl.alt = item.alt;
-        capEl.textContent = item.cap;
-        imgEl.style.opacity = "1";
-        renderDots();
-      }, 220);
-    }
-
-    function next() {
-      idx = (idx + 1) % images.length;
-      show();
-    }
-
-    function prev() {
-      idx = (idx - 1 + images.length) % images.length;
-      show();
-    }
-
-    function stopAuto() {
-      if (timer) clearInterval(timer);
-      timer = null;
-    }
-
-    function restart() {
-      stopAuto();
-      if (autoPlay) {
-        timer = setInterval(next, 4000);
       }
-    }
-
-    function updateToggleButton() {
-      if (!toggleAutoBtn) return;
-      toggleAutoBtn.querySelector("span").textContent = autoPlay ? "⏸" : "▶";
-      toggleAutoBtn.setAttribute("aria-label", autoPlay ? "השהה החלפה אוטומטית" : "הפעל החלפה אוטומטית");
-      toggleAutoBtn.setAttribute("aria-pressed", autoPlay ? "false" : "true");
-    }
-
-    prevBtn?.addEventListener("click", () => {
-      prev();
-      if (autoPlay) restart();
     });
-
-    nextBtn?.addEventListener("click", () => {
-      next();
-      if (autoPlay) restart();
-    });
-
-    toggleAutoBtn?.addEventListener("click", () => {
-      autoPlay = !autoPlay;
-      updateToggleButton();
-      if (autoPlay) restart();
-      else stopAuto();
-    });
-
-    if (imgEl && capEl && dotsEl) {
-      renderDots();
-      updateToggleButton();
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!prefersReducedMotion) {
-        restart();
-      } else {
-        autoPlay = false;
-        updateToggleButton();
-      }
-    }
-
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    menuToggle?.addEventListener("click", () => {
-      const isOpen = mobileMenu.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-
-    mobileMenu?.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-        menuToggle?.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) backToTop?.classList.add("show");
-      else backToTop?.classList.remove("show");
-    });
-
-    backToTop?.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    /* ===== תפריט נגישות ===== */
-const accessBtn = document.getElementById("accessBtn");
-const accessPanel = document.getElementById("accessPanel");
-const accessClose = document.getElementById("accessClose");
-const accessActions = document.querySelectorAll(".access-action");
-
-let currentFontSize = Number(localStorage.getItem("accessFontSize")) || 100;
-
-function applyFontSize() {
-  document.documentElement.style.fontSize = currentFontSize + "%";
-  localStorage.setItem("accessFontSize", String(currentFontSize));
-}
-
-function setBodyClass(className, enabled) {
-  document.body.classList.toggle(className, enabled);
-  localStorage.setItem(className, enabled ? "1" : "0");
-}
-
-function loadAccessibilityState() {
-  applyFontSize();
-
-  const toggles = [
-    "access-high-contrast",
-    "access-readable-font",
-    "access-links-highlight",
-    "access-stop-motion"
-  ];
-
-  toggles.forEach(cls => {
-    const enabled = localStorage.getItem(cls) === "1";
-    document.body.classList.toggle(cls, enabled);
   });
-}
 
-function openAccessPanel() {
-  accessPanel.classList.add("open");
-  accessPanel.setAttribute("aria-hidden", "false");
-}
-
-function closeAccessPanel() {
-  accessPanel.classList.remove("open");
-  accessPanel.setAttribute("aria-hidden", "true");
-}
-
-accessBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-  const isOpen = accessPanel.classList.contains("open");
-  if (isOpen) closeAccessPanel();
-  else openAccessPanel();
-});
-
-accessClose?.addEventListener("click", closeAccessPanel);
-
-document.addEventListener("click", (e) => {
-  if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
-    closeAccessPanel();
-  }
-});
-
-accessActions.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const action = btn.dataset.action;
-
-    if (action === "increaseText") {
-      currentFontSize = Math.min(currentFontSize + 10, 140);
-      applyFontSize();
-    }
-
-    if (action === "decreaseText") {
-      currentFontSize = Math.max(currentFontSize - 10, 90);
-      applyFontSize();
-    }
-
-    if (action === "toggleContrast") {
-      const next = !document.body.classList.contains("access-high-contrast");
-      setBodyClass("access-high-contrast", next);
-    }
-
-    if (action === "toggleReadableFont") {
-      const next = !document.body.classList.contains("access-readable-font");
-      setBodyClass("access-readable-font", next);
-    }
-
-    if (action === "toggleLinks") {
-      const next = !document.body.classList.contains("access-links-highlight");
-      setBodyClass("access-links-highlight", next);
-    }
-
-    if (action === "toggleMotion") {
-      const next = !document.body.classList.contains("access-stop-motion");
-      setBodyClass("access-stop-motion", next);
-    }
-
-    if (action === "resetAccess") {
-      currentFontSize = 100;
-      applyFontSize();
-
-      [
-        "access-high-contrast",
-        "access-readable-font",
-        "access-links-highlight",
-        "access-stop-motion"
-      ].forEach(cls => {
-        document.body.classList.remove(cls);
-        localStorage.removeItem(cls);
-      });
-    }
-  });
-});
-
-/* ===== תפריט נגישות ===== */
-const accessBtn = document.getElementById("accessBtn");
-const accessPanel = document.getElementById("accessPanel");
-const accessClose = document.getElementById("accessClose");
-const accessOptions = document.querySelectorAll(".access-option");
-
-let currentFontSize = Number(localStorage.getItem("accessFontSize")) || 100;
-
-function applyFontSize() {
-  document.documentElement.style.fontSize = currentFontSize + "%";
-  localStorage.setItem("accessFontSize", String(currentFontSize));
-}
-
-function setBodyClass(className, enabled) {
-  document.body.classList.toggle(className, enabled);
-  localStorage.setItem(className, enabled ? "1" : "0");
-}
-
-function loadAccessibilityState() {
-  applyFontSize();
-
-  const toggles = [
-    "access-high-contrast",
-    "access-links-highlight",
-    "access-stop-motion"
-  ];
-
-  toggles.forEach(cls => {
-    const enabled = localStorage.getItem(cls) === "1";
-    document.body.classList.toggle(cls, enabled);
-  });
-}
-
-function openAccessPanel() {
-  accessPanel.classList.add("open");
-  accessPanel.setAttribute("aria-hidden", "false");
-}
-
-function closeAccessPanel() {
-  accessPanel.classList.remove("open");
-  accessPanel.setAttribute("aria-hidden", "true");
-}
-
-accessBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-  const isOpen = accessPanel.classList.contains("open");
-  if (isOpen) closeAccessPanel();
-  else openAccessPanel();
-});
-
-accessClose?.addEventListener("click", closeAccessPanel);
-
-document.addEventListener("click", (e) => {
-  if (!accessPanel || !accessBtn) return;
-  if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
-    closeAccessPanel();
-  }
-});
-
-accessOptions.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const action = btn.dataset.action;
-
-    if (action === "increase-text") {
-      currentFontSize = Math.min(currentFontSize + 10, 140);
-      applyFontSize();
-    }
-
-    if (action === "decrease-text") {
-      currentFontSize = Math.max(currentFontSize - 10, 90);
-      applyFontSize();
-    }
-
-    if (action === "toggle-contrast") {
-      const next = !document.body.classList.contains("access-high-contrast");
-      setBodyClass("access-high-contrast", next);
-    }
-
-    if (action === "toggle-links") {
-      const next = !document.body.classList.contains("access-links-highlight");
-      setBodyClass("access-links-highlight", next);
-    }
-
-    if (action === "toggle-motion") {
-      const next = !document.body.classList.contains("access-stop-motion");
-      setBodyClass("access-stop-motion", next);
-    }
-
-    if (action === "reset") {
-      currentFontSize = 100;
-      applyFontSize();
-
-      [
-        "access-high-contrast",
-        "access-links-highlight",
-        "access-stop-motion"
-      ].forEach(cls => {
-        document.body.classList.remove(cls);
-        localStorage.removeItem(cls);
-      });
-    }
-  });
-});
-
-loadAccessibilityState();
-    /* ===== תפריט נגישות ===== */
-const accessBtn = document.getElementById("accessBtn");
-const accessPanel = document.getElementById("accessPanel");
-const accessClose = document.getElementById("accessClose");
-const accessOptions = document.querySelectorAll(".access-option");
-
-let accessFontScale = 100;
-
-function openAccessPanel() {
-  accessPanel.classList.add("open");
-  accessPanel.setAttribute("aria-hidden", "false");
-}
-
-function closeAccessPanel() {
-  accessPanel.classList.remove("open");
-  accessPanel.setAttribute("aria-hidden", "true");
-}
-
-accessBtn?.addEventListener("click", (e) => {
-  e.preventDefault();
-  const isOpen = accessPanel.classList.contains("open");
-  if (isOpen) closeAccessPanel();
-  else openAccessPanel();
-});
-
-accessClose?.addEventListener("click", () => {
-  closeAccessPanel();
-});
-
-document.addEventListener("click", (e) => {
-  if (!accessPanel || !accessBtn) return;
-  if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
-    closeAccessPanel();
-  }
-});
-
-accessOptions.forEach((button) => {
-  button.addEventListener("click", () => {
-    const action = button.dataset.action;
-
-    if (action === "increase-text") {
-      accessFontScale = Math.min(accessFontScale + 10, 140);
-      document.documentElement.style.fontSize = accessFontScale + "%";
-    }
-
-    if (action === "decrease-text") {
-      accessFontScale = Math.max(accessFontScale - 10, 90);
-      document.documentElement.style.fontSize = accessFontScale + "%";
-    }
-
-    if (action === "toggle-contrast") {
-      document.body.classList.toggle("access-high-contrast");
-    }
-
-    if (action === "toggle-links") {
-      document.body.classList.toggle("access-links-highlight");
-    }
-
-    if (action === "toggle-motion") {
-      document.body.classList.toggle("access-stop-motion");
-    }
-
-    if (action === "reset") {
-      accessFontScale = 100;
-      document.documentElement.style.fontSize = "100%";
-      document.body.classList.remove(
-        "access-high-contrast",
-        "access-links-highlight",
-        "access-stop-motion"
-      );
-    }
-  });
-});
-  </script>
+  loadAccessibilityState();
+</script>
 </body>
 </html>
