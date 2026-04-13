@@ -13,35 +13,7 @@
   <meta name="theme-color" content="#0a5bff" />
 
   <style>
-    /* כפתור נגישות צף */
-.floating-access{
-  position:fixed;
-  right:18px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:1300;
 
-  width:56px;
-  height:56px;
-  border-radius:50%;
-
-  background:linear-gradient(135deg,#0a5bff,#35b6ff);
-  color:#fff;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-decoration:none;
-
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-  transition:all .25s ease;
-}
-
-.floating-access:hover{
-  transform:translateY(-50%) scale(1.08);
-  box-shadow:0 18px 40px rgba(0,0,0,.35);
-}
     :root{
       --bg:#071225;
       --bg2:#091932;
@@ -291,6 +263,210 @@
 
 .btn-dark:hover{
   background:#e5e7eb;
+}
+    /* ===== נגישות: כפתור צף + תפריט ===== */
+
+.floating-access{
+  position:fixed;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:1400;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#0a5bff,#35b6ff);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  border:1px solid rgba(255,255,255,.18);
+}
+
+.floating-access:hover{
+  transform:translateY(-50%) scale(1.06);
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  filter:brightness(1.03);
+}
+
+.access-panel{
+  position:fixed;
+  right:88px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:1401;
+  width:300px;
+  max-width:calc(100vw - 32px);
+  border-radius:22px;
+  background:#ffffff;
+  color:#111827;
+  border:1px solid rgba(15,23,42,.10);
+  box-shadow:0 24px 60px rgba(0,0,0,.22);
+  overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+}
+
+.access-panel.open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(-50%) translateX(0);
+}
+
+.access-panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 18px;
+  background:#f8fafc;
+  border-bottom:1px solid rgba(15,23,42,.08);
+}
+
+.access-panel-head strong{
+  font-size:16px;
+  color:#0f172a;
+}
+
+.access-close{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:12px;
+  background:#eef2f7;
+  color:#111827;
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+}
+
+.access-panel-body{
+  display:grid;
+  gap:10px;
+  padding:16px;
+}
+
+.access-action{
+  width:100%;
+  min-height:48px;
+  border:none;
+  border-radius:14px;
+  background:#f8fafc;
+  color:#111827;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  border:1px solid rgba(15,23,42,.08);
+  transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.access-action:hover{
+  background:#eef2f7;
+  transform:translateY(-1px);
+}
+
+.access-action.reset{
+  background:#0f172a;
+  color:#fff;
+}
+
+/* ===== מצבי נגישות ===== */
+
+/* הגדלת טקסט נעשית ב-JS דרך html font-size */
+
+body.access-high-contrast{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+body.access-high-contrast .nav,
+body.access-high-contrast .card,
+body.access-high-contrast .client,
+body.access-high-contrast .field,
+body.access-high-contrast .accessibility-card,
+body.access-high-contrast .mobile-menu,
+body.access-high-contrast .access-panel,
+body.access-high-contrast .hero-stat{
+  background:#111 !important;
+  color:#fff !important;
+  border-color:#fff !important;
+  box-shadow:none !important;
+}
+
+body.access-high-contrast .links a,
+body.access-high-contrast .brand-text b,
+body.access-high-contrast .brand-text span,
+body.access-high-contrast .lead,
+body.access-high-contrast .card p,
+body.access-high-contrast .field strong,
+body.access-high-contrast .field small,
+body.access-high-contrast .check-list li,
+body.access-high-contrast .foot,
+body.access-high-contrast footer,
+body.access-high-contrast .access-panel-head strong{
+  color:#fff !important;
+}
+
+body.access-high-contrast .btn,
+body.access-high-contrast .action-card,
+body.access-high-contrast .access-action,
+body.access-high-contrast .menu-toggle,
+body.access-high-contrast .cbtn{
+  background:#fff !important;
+  color:#000 !important;
+  border-color:#fff !important;
+}
+
+body.access-high-contrast a{
+  color:#ffeb3b !important;
+}
+
+body.access-readable-font,
+body.access-readable-font button,
+body.access-readable-font input,
+body.access-readable-font textarea,
+body.access-readable-font select{
+  font-family:Arial,"Noto Sans Hebrew",sans-serif !important;
+}
+
+body.access-links-highlight a{
+  text-decoration:underline !important;
+  text-underline-offset:4px !important;
+  font-weight:900 !important;
+}
+
+body.access-stop-motion *,
+body.access-stop-motion *::before,
+body.access-stop-motion *::after{
+  animation:none !important;
+  transition:none !important;
+  scroll-behavior:auto !important;
+}
+
+@media (max-width:640px){
+  .floating-access{
+    right:12px;
+    width:48px;
+    height:48px;
+  }
+
+  .access-panel{
+    right:12px;
+    left:12px;
+    top:auto;
+    bottom:72px;
+    width:auto;
+    max-width:none;
+    transform:none;
+  }
+
+  .access-panel.open{
+    transform:none;
+  }
 }
 
 /* כפתור מובייל */
@@ -926,6 +1102,16 @@
     }
   </style>
 </head>
+  <!-- כפתור נגישות + תפריט -->
+<a href="#" class="floating-access" id="accessBtn">
+  ♿
+</a>
+
+<div class="access-panel" id="accessPanel">
+  <button onclick="toggleTextSize()">הגדלת טקסט</button>
+  <button onclick="toggleContrast()">ניגודיות גבוהה</button>
+  <button onclick="resetAccess()">איפוס</button>
+</div>
 <body>
   <a class="skip-link" href="#mainContent">דלג לתוכן המרכזי</a>
 
@@ -954,11 +1140,7 @@
         <a href="#gallery">גלריה</a>
         <a href="#projects">פרויקטים</a>
         <a href="#contact">יצירת קשר</a>
-       <a href="#accessibility" aria-label="נגישות" class="access-icon">
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-    <path d="M12 2a2 2 0 110 4 2 2 0 010-4zm0 5c-2.21 0-4 1.79-4 4v2h2v7h2v-7h2v7h2v-7h2v-2c0-2.21-1.79-4-4-4h-2z"/>
-  </svg>
-</a>
+
       </nav>
 
       <button
@@ -1443,6 +1625,117 @@
     backToTop?.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+    /* ===== תפריט נגישות ===== */
+const accessBtn = document.getElementById("accessBtn");
+const accessPanel = document.getElementById("accessPanel");
+const accessClose = document.getElementById("accessClose");
+const accessActions = document.querySelectorAll(".access-action");
+
+let currentFontSize = Number(localStorage.getItem("accessFontSize")) || 100;
+
+function applyFontSize() {
+  document.documentElement.style.fontSize = currentFontSize + "%";
+  localStorage.setItem("accessFontSize", String(currentFontSize));
+}
+
+function setBodyClass(className, enabled) {
+  document.body.classList.toggle(className, enabled);
+  localStorage.setItem(className, enabled ? "1" : "0");
+}
+
+function loadAccessibilityState() {
+  applyFontSize();
+
+  const toggles = [
+    "access-high-contrast",
+    "access-readable-font",
+    "access-links-highlight",
+    "access-stop-motion"
+  ];
+
+  toggles.forEach(cls => {
+    const enabled = localStorage.getItem(cls) === "1";
+    document.body.classList.toggle(cls, enabled);
+  });
+}
+
+function openAccessPanel() {
+  accessPanel.classList.add("open");
+  accessPanel.setAttribute("aria-hidden", "false");
+}
+
+function closeAccessPanel() {
+  accessPanel.classList.remove("open");
+  accessPanel.setAttribute("aria-hidden", "true");
+}
+
+accessBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+  const isOpen = accessPanel.classList.contains("open");
+  if (isOpen) closeAccessPanel();
+  else openAccessPanel();
+});
+
+accessClose?.addEventListener("click", closeAccessPanel);
+
+document.addEventListener("click", (e) => {
+  if (!accessPanel.contains(e.target) && !accessBtn.contains(e.target)) {
+    closeAccessPanel();
+  }
+});
+
+accessActions.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const action = btn.dataset.action;
+
+    if (action === "increaseText") {
+      currentFontSize = Math.min(currentFontSize + 10, 140);
+      applyFontSize();
+    }
+
+    if (action === "decreaseText") {
+      currentFontSize = Math.max(currentFontSize - 10, 90);
+      applyFontSize();
+    }
+
+    if (action === "toggleContrast") {
+      const next = !document.body.classList.contains("access-high-contrast");
+      setBodyClass("access-high-contrast", next);
+    }
+
+    if (action === "toggleReadableFont") {
+      const next = !document.body.classList.contains("access-readable-font");
+      setBodyClass("access-readable-font", next);
+    }
+
+    if (action === "toggleLinks") {
+      const next = !document.body.classList.contains("access-links-highlight");
+      setBodyClass("access-links-highlight", next);
+    }
+
+    if (action === "toggleMotion") {
+      const next = !document.body.classList.contains("access-stop-motion");
+      setBodyClass("access-stop-motion", next);
+    }
+
+    if (action === "resetAccess") {
+      currentFontSize = 100;
+      applyFontSize();
+
+      [
+        "access-high-contrast",
+        "access-readable-font",
+        "access-links-highlight",
+        "access-stop-motion"
+      ].forEach(cls => {
+        document.body.classList.remove(cls);
+        localStorage.removeItem(cls);
+      });
+    }
+  });
+});
+
+loadAccessibilityState();
   </script>
 </body>
 </html>
